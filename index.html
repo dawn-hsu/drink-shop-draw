@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>今天喝哪家？</title>
+  <style>
+    :root { color-scheme: light dark; }
+    html { background: light-dark(#eee8e2, #100e0c); }
+    body { margin: 0; padding: 16px; }
+    @media (max-width: 620px) { body { padding: 0; } }
+  </style>
+</head>
+<body>
+<div id="drink-shop-draw">
+  <style>
+    #drink-shop-draw {
+      --ds-page: light-dark(#f6f2ed, #171411);
+      --ds-surface: light-dark(#fffdf9, #24201c);
+      --ds-surface-soft: light-dark(#eee7df, #302a25);
+      --ds-text: light-dark(#241d18, #f6eee7);
+      --ds-muted: light-dark(#76685e, #b9aaa0);
+      --ds-line: light-dark(#ded4cb, #494039);
+      --ds-brand: light-dark(#8f2f3d, #d77783);
+      --ds-brand-text: light-dark(#fffaf6, #261114);
+      --ds-danger: light-dark(#a13636, #f08b8b);
+      color: var(--ds-text);
+      font-family: ui-rounded, "Noto Sans TC", system-ui, sans-serif;
+      width: 100%;
+    }
+    #drink-shop-draw * { box-sizing: border-box; }
+    #drink-shop-draw .ds-app {
+      background: var(--ds-page);
+      border: 1px solid var(--ds-line);
+      border-radius: 24px;
+      overflow: hidden;
+    }
+    #drink-shop-draw .ds-topbar {
+      align-items: center;
+      background: var(--ds-surface);
+      border-bottom: 1px solid var(--ds-line);
+      display: flex;
+      justify-content: space-between;
+      padding: 16px 20px;
+    }
+    #drink-shop-draw .ds-brand { display: flex; gap: 10px; align-items: center; }
+    #drink-shop-draw .ds-logo {
+      align-items: center;
+      background: var(--ds-brand);
+      border-radius: 12px;
+      color: var(--ds-brand-text);
+      display: flex;
+      height: 36px;
+      justify-content: center;
+      width: 36px;
+    }
+    #drink-shop-draw h1,
+    #drink-shop-draw h2,
+    #drink-shop-draw p { margin: 0; }
+    #drink-shop-draw h1 { font-size: 18px; font-weight: 500; }
+    #drink-shop-draw h2 { font-size: 16px; font-weight: 500; }
+    #drink-shop-draw .ds-kicker,
+    #drink-shop-draw .ds-count,
+    #drink-shop-draw .ds-note { color: var(--ds-muted); font-size: 13px; }
+    #drink-shop-draw .ds-layout {
+      display: grid;
+      gap: 18px;
+      grid-template-columns: minmax(0, 1.25fr) minmax(260px, .75fr);
+      padding: 20px;
+    }
+    #drink-shop-draw .ds-panel {
+      background: var(--ds-surface);
+      border: 1px solid var(--ds-line);
+      border-radius: 18px;
+      padding: 18px;
+    }
+    #drink-shop-draw .ds-heading-row {
+      align-items: baseline;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+    #drink-shop-draw .ds-manager summary {
+      align-items: center;
+      background: var(--ds-surface-soft);
+      border: 1px solid var(--ds-line);
+      border-radius: 12px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      list-style: none;
+      padding: 10px 12px;
+    }
+    #drink-shop-draw .ds-manager summary::-webkit-details-marker { display: none; }
+    #drink-shop-draw .ds-manager summary:focus-visible { outline: 3px solid color-mix(in srgb, var(--ds-brand) 35%, transparent); outline-offset: 2px; }
+    #drink-shop-draw .ds-manager-label { align-items: center; display: flex; gap: 8px; font-size: 14px; font-weight: 500; }
+    #drink-shop-draw .ds-manager-chevron { transition: transform .18s ease; }
+    #drink-shop-draw .ds-manager[open] .ds-manager-chevron { transform: rotate(180deg); }
+    #drink-shop-draw .ds-manager-body { padding-top: 12px; }
+    #drink-shop-draw .ds-add {
+      display: grid;
+      gap: 8px;
+      grid-template-columns: minmax(0, 1fr) auto;
+      margin-bottom: 14px;
+    }
+    #drink-shop-draw .ds-sr-only {
+      clip: rect(0, 0, 0, 0);
+      clip-path: inset(50%);
+      height: 1px;
+      overflow: hidden;
+      position: absolute;
+      white-space: nowrap;
+      width: 1px;
+    }
+    #drink-shop-draw input[type="text"] {
+      background: var(--ds-page);
+      border: 1px solid var(--ds-line);
+      border-radius: 12px;
+      color: var(--ds-text);
+      font: inherit;
+      min-width: 0;
+      padding: 10px 12px;
+    }
+    #drink-shop-draw button {
+      align-items: center;
+      border: 1px solid var(--ds-line);
+      border-radius: 12px;
+      cursor: pointer;
+      display: inline-flex;
+      font: inherit;
+      font-weight: 500;
+      gap: 7px;
+      justify-content: center;
+      padding: 10px 14px;
+    }
+    #drink-shop-draw button:focus-visible,
+    #drink-shop-draw input:focus-visible { outline: 3px solid color-mix(in srgb, var(--ds-brand) 35%, transparent); outline-offset: 2px; }
+    #drink-shop-draw .ds-secondary { background: var(--ds-surface-soft); color: var(--ds-text); }
+    #drink-shop-draw .ds-primary { background: var(--ds-brand); border-color: var(--ds-brand); color: var(--ds-brand-text); }
+    #drink-shop-draw button:disabled { cursor: not-allowed; opacity: .55; }
+    #drink-shop-draw .ds-list { display: grid; gap: 8px; }
+    #drink-shop-draw .ds-store {
+      align-items: center;
+      background: var(--ds-page);
+      border: 1px solid var(--ds-line);
+      border-radius: 13px;
+      display: grid;
+      gap: 10px;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      padding: 10px 12px;
+    }
+    #drink-shop-draw .ds-store-name { font-size: 14px; }
+    #drink-shop-draw .ds-store input { accent-color: var(--ds-brand); height: 18px; width: 18px; }
+    #drink-shop-draw .ds-remove {
+      background: transparent;
+      border: 0;
+      color: var(--ds-muted);
+      padding: 5px;
+    }
+    #drink-shop-draw .ds-remove:hover { color: var(--ds-danger); }
+    #drink-shop-draw .ds-draw-panel { display: flex; flex-direction: column; gap: 14px; }
+    #drink-shop-draw .ds-drum {
+      align-items: center;
+      background: var(--ds-surface-soft);
+      border: 1px dashed var(--ds-line);
+      border-radius: 16px;
+      display: flex;
+      flex: 1;
+      justify-content: center;
+      min-height: 180px;
+      padding: 24px 18px;
+      text-align: center;
+    }
+    #drink-shop-draw .ds-result-icon { color: var(--ds-brand); margin: 0 auto 10px; }
+    #drink-shop-draw .ds-result-label { color: var(--ds-muted); font-size: 13px; margin-bottom: 7px; }
+    #drink-shop-draw .ds-result-name { font-size: 24px; font-weight: 500; overflow-wrap: anywhere; }
+    #drink-shop-draw .ds-actions { display: grid; gap: 8px; }
+    #drink-shop-draw .ds-actions button { width: 100%; }
+    #drink-shop-draw .ds-draw.is-hidden,
+    #drink-shop-draw .ds-new-round { display: none; }
+    #drink-shop-draw .ds-new-round.is-visible { display: inline-flex; }
+    #drink-shop-draw .ds-confirm { display: none; grid-template-columns: 1fr 1fr; }
+    #drink-shop-draw .ds-confirm.is-visible { display: grid; }
+    #drink-shop-draw .ds-toast {
+      background: var(--ds-brand);
+      border-radius: 12px;
+      color: var(--ds-brand-text);
+      display: none;
+      padding: 11px 13px;
+      text-align: center;
+    }
+    #drink-shop-draw .ds-toast.is-visible { display: block; }
+    @media (max-width: 620px) {
+      #drink-shop-draw .ds-layout { grid-template-columns: 1fr; padding: 14px; }
+      #drink-shop-draw .ds-topbar { padding: 14px; }
+      #drink-shop-draw .ds-drum { min-height: 145px; }
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      #drink-shop-draw .ds-drum.is-drawing { animation: ds-pulse .35s ease-in-out infinite alternate; }
+      @keyframes ds-pulse { to { transform: scale(.985); } }
+    }
+  </style>
+
+  <section class="ds-app" aria-label="今天喝哪家店抽籤原型">
+    <header class="ds-topbar">
+      <div class="ds-brand">
+        <span class="ds-logo"><i data-lucide="cup-soda" aria-hidden="true"></i></span>
+        <div>
+          <h1>今天喝哪家？</h1>
+          <p class="ds-kicker">把選擇交給手氣</p>
+        </div>
+      </div>
+      <span class="ds-count" aria-live="polite">5 家入籤</span>
+    </header>
+
+    <div class="ds-layout">
+      <section class="ds-panel" aria-labelledby="ds-candidates-title">
+        <div class="ds-heading-row">
+          <h2 id="ds-candidates-title">候選店家</h2>
+          <span class="ds-note">至少選 2 家</span>
+        </div>
+        <details class="ds-manager" open>
+          <summary>
+            <span class="ds-manager-label"><i data-lucide="list" aria-hidden="true"></i><span class="ds-manager-text">管理店家</span></span>
+            <i class="ds-manager-chevron" data-lucide="chevron-down" aria-hidden="true"></i>
+          </summary>
+          <div class="ds-manager-body">
+            <div class="ds-add">
+              <label class="ds-sr-only" for="ds-store-input">新增店家</label>
+              <input id="ds-store-input" type="text" maxlength="30" placeholder="輸入店名，例如：再睡5分鐘" autocomplete="off">
+              <button class="ds-secondary ds-add-button" type="button"><i data-lucide="plus" aria-hidden="true"></i>加入</button>
+            </div>
+            <div class="ds-list" aria-live="polite"></div>
+          </div>
+        </details>
+      </section>
+
+      <section class="ds-panel ds-draw-panel" aria-labelledby="ds-result-title">
+        <h2 id="ds-result-title">抽籤結果</h2>
+        <div class="ds-drum" aria-live="polite">
+          <div>
+            <div class="ds-result-icon"><i data-lucide="sparkles" aria-hidden="true"></i></div>
+            <p class="ds-result-label">準備好了嗎？</p>
+            <p class="ds-result-name">今天喝哪家</p>
+          </div>
+        </div>
+        <div class="ds-actions">
+          <button class="ds-primary ds-draw" type="button"><i data-lucide="shuffle" aria-hidden="true"></i>開始抽店家</button>
+          <div class="ds-confirm">
+            <button class="ds-secondary ds-redraw" type="button">再抽一次</button>
+            <button class="ds-primary ds-accept" type="button"><i data-lucide="check" aria-hidden="true"></i>就喝這家</button>
+          </div>
+          <p class="ds-toast" role="status"></p>
+          <button class="ds-secondary ds-new-round" type="button"><i data-lucide="rotate-ccw" aria-hidden="true"></i>重新抽一輪</button>
+        </div>
+      </section>
+    </div>
+  </section>
+
+  <script>
+    (() => {
+      const root = document.getElementById('drink-shop-draw');
+      const list = root.querySelector('.ds-list');
+      const manager = root.querySelector('.ds-manager');
+      const managerText = root.querySelector('.ds-manager-text');
+      const input = root.querySelector('#ds-store-input');
+      const addButton = root.querySelector('.ds-add-button');
+      const count = root.querySelector('.ds-count');
+      const drum = root.querySelector('.ds-drum');
+      const resultLabel = root.querySelector('.ds-result-label');
+      const resultName = root.querySelector('.ds-result-name');
+      const drawButton = root.querySelector('.ds-draw');
+      const confirm = root.querySelector('.ds-confirm');
+      const redrawButton = root.querySelector('.ds-redraw');
+      const acceptButton = root.querySelector('.ds-accept');
+      const newRoundButton = root.querySelector('.ds-new-round');
+      const toast = root.querySelector('.ds-toast');
+      const storageKey = 'drink-shop-draw-stores-v1';
+      const defaultStores = [
+        { id: 1, name: '五十嵐', active: true },
+        { id: 2, name: '可不可熟成紅茶', active: true },
+        { id: 3, name: '麻古茶坊', active: true },
+        { id: 4, name: '龜記茗品', active: true },
+        { id: 5, name: '得正', active: true }
+      ];
+
+      function loadStores() {
+        try {
+          const saved = JSON.parse(window.localStorage.getItem(storageKey));
+          if (Array.isArray(saved) && saved.every(store =>
+            Number.isInteger(store.id) &&
+            typeof store.name === 'string' &&
+            store.name.trim() &&
+            typeof store.active === 'boolean'
+          )) return saved;
+        } catch (error) {
+          console.warn('無法讀取已儲存的店家名單', error);
+        }
+        return defaultStores.map(store => ({ ...store }));
+      }
+
+      function saveStores() {
+        try {
+          window.localStorage.setItem(storageKey, JSON.stringify(stores));
+        } catch (error) {
+          console.warn('無法儲存店家名單', error);
+        }
+      }
+
+      let stores = loadStores();
+      let nextId = stores.reduce((max, store) => Math.max(max, store.id), 0) + 1;
+      manager.open = stores.length <= 5;
+      let chosen = '';
+      let timer = null;
+
+      const activeStores = () => stores.filter(store => store.active);
+
+      function updateState() {
+        const active = activeStores().length;
+        count.textContent = `${active} 家入籤`;
+        managerText.textContent = `管理店家（${active} / ${stores.length} 家入籤）`;
+        drawButton.disabled = active < 2;
+        if (active < 2) {
+          drawButton.classList.remove('is-hidden');
+          newRoundButton.classList.remove('is-visible');
+          resultLabel.textContent = '還不能抽喔';
+          resultName.textContent = '請至少選 2 家';
+          confirm.classList.remove('is-visible');
+        } else if (!chosen) {
+          drawButton.classList.remove('is-hidden');
+          newRoundButton.classList.remove('is-visible');
+          resultLabel.textContent = '準備好了嗎？';
+          resultName.textContent = '今天喝哪家';
+          confirm.classList.remove('is-visible');
+        }
+      }
+
+      function render() {
+        list.replaceChildren();
+        stores.forEach(store => {
+          const row = document.createElement('div');
+          row.className = 'ds-store';
+          const checkbox = document.createElement('input');
+          checkbox.type = 'checkbox';
+          checkbox.checked = store.active;
+          checkbox.setAttribute('aria-label', `${store.name}加入抽籤`);
+          checkbox.addEventListener('change', () => {
+            store.active = checkbox.checked;
+            saveStores();
+            chosen = '';
+            toast.classList.remove('is-visible');
+            updateState();
+          });
+          const name = document.createElement('span');
+          name.className = 'ds-store-name';
+          name.textContent = store.name;
+          const remove = document.createElement('button');
+          remove.className = 'ds-remove';
+          remove.type = 'button';
+          remove.setAttribute('aria-label', `移除${store.name}`);
+          remove.innerHTML = '<i data-lucide="x" aria-hidden="true"></i>';
+          remove.addEventListener('click', () => {
+            stores = stores.filter(item => item.id !== store.id);
+            saveStores();
+            chosen = '';
+            render();
+          });
+          row.append(checkbox, name, remove);
+          list.append(row);
+        });
+        updateState();
+        if (window.lucide) window.lucide.createIcons({ attrs: { width: 16, height: 16 } });
+      }
+
+      function draw() {
+        const pool = activeStores();
+        if (pool.length < 2 || timer) return;
+        toast.classList.remove('is-visible');
+        newRoundButton.classList.remove('is-visible');
+        confirm.classList.remove('is-visible');
+        drawButton.classList.add('is-hidden');
+        drawButton.disabled = true;
+        drum.classList.add('is-drawing');
+        resultLabel.textContent = '籤筒轉動中…';
+        let ticks = 0;
+        timer = window.setInterval(() => {
+          resultName.textContent = pool[ticks % pool.length].name;
+          ticks += 1;
+          if (ticks >= 13) {
+            window.clearInterval(timer);
+            timer = null;
+            chosen = pool[Math.floor(Math.random() * pool.length)].name;
+            resultLabel.textContent = '今天就喝';
+            resultName.textContent = chosen;
+            drum.classList.remove('is-drawing');
+            confirm.classList.add('is-visible');
+            drawButton.disabled = false;
+          }
+        }, 90);
+      }
+
+      function addStore() {
+        const name = input.value.trim();
+        if (!name) {
+          input.focus();
+          return;
+        }
+        if (stores.some(store => store.name.toLocaleLowerCase() === name.toLocaleLowerCase())) {
+          input.setCustomValidity('這家店已經在候選名單裡了');
+          input.reportValidity();
+          return;
+        }
+        input.setCustomValidity('');
+        stores.push({ id: nextId++, name, active: true });
+        saveStores();
+        input.value = '';
+        chosen = '';
+        render();
+        input.focus();
+      }
+      addButton.addEventListener('click', addStore);
+      input.addEventListener('keydown', event => {
+        if (event.key === 'Enter') {
+          event.preventDefault();
+          addStore();
+        }
+      });
+      input.addEventListener('input', () => input.setCustomValidity(''));
+      drawButton.addEventListener('click', draw);
+      redrawButton.addEventListener('click', draw);
+      acceptButton.addEventListener('click', () => {
+        toast.textContent = `決定了，今天喝「${chosen}」！`;
+        toast.classList.add('is-visible');
+        confirm.classList.remove('is-visible');
+        newRoundButton.classList.add('is-visible');
+      });
+      newRoundButton.addEventListener('click', draw);
+      render();
+    })();
+  </script>
+</div>
+
+<script src="https://unpkg.com/lucide@1.17.0/dist/umd/lucide.js"></script>
+<script>
+  globalThis.lucide?.createIcons({ attrs: { width: 16, height: 16 } });
+</script>
+</body>
+</html>
