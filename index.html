@@ -277,13 +277,26 @@
       const newRoundButton = root.querySelector('.ds-new-round');
       const toast = root.querySelector('.ds-toast');
       const storageKey = 'drink-shop-draw-stores-v1';
+      const seedVersionKey = 'drink-shop-draw-seed-version';
+      const currentSeedVersion = 3;
       const defaultStores = [
         { id: 1, name: '五十嵐', active: true },
-        { id: 2, name: '可不可熟成紅茶', active: true },
-        { id: 3, name: '麻古茶坊', active: true },
-        { id: 4, name: '龜記茗品', active: true },
-        { id: 5, name: '得正', active: true }
+        { id: 2, name: '得正', active: true },
+        { id: 3, name: '青山', active: true },
+        { id: 4, name: 'CoCo都可', active: true },
+        { id: 5, name: '可不可熟成紅茶', active: true },
+        { id: 6, name: '迷客夏', active: true },
+        { id: 7, name: '大苑子', active: true },
+        { id: 8, name: '茶湯會', active: true },
+        { id: 9, name: '珍煮丹', active: true }
       ];
+      const legacySeedNames = new Set([
+        '五十嵐', '可不可熟成紅茶', '麻古茶坊', '龜記茗品', '得正',
+        '清心福全', 'coco都可', '迷客夏', '大苑子', '珍煮丹',
+        '再睡5分鐘', '萬波島嶼紅茶', '一沐日', '鶴茶樓', '茶湯會',
+        'comebuy', '鮮茶道', 'mr.wish', '春水堂', '老賴茶棧',
+        '上宇林', '先喝道', '八曜和茶', 'ug樂己', '拾汣茶屋'
+      ]);
 
       function loadStores() {
         try {
@@ -293,7 +306,32 @@
             typeof store.name === 'string' &&
             store.name.trim() &&
             typeof store.active === 'boolean'
-          )) return saved;
+          )) {
+            const savedSeedVersion = Number(window.localStorage.getItem(seedVersionKey) || 1);
+            if (savedSeedVersion < currentSeedVersion) {
+              const savedByName = new Map(saved.map(store => [store.name.trim().toLocaleLowerCase(), store]));
+              const defaultNames = new Set(defaultStores.map(store => store.name.toLocaleLowerCase()));
+              let migrationId = saved.reduce((max, store) => Math.max(max, store.id), 0) + 1;
+              const migrated = defaultStores.map(store => {
+                const normalizedName = store.name.toLocaleLowerCase();
+                const existing = savedByName.get(normalizedName);
+                return existing
+                  ? { id: existing.id, name: store.name, active: existing.active }
+                  : { id: migrationId++, name: store.name, active: true };
+              });
+              saved.forEach(store => {
+                const normalizedName = store.name.trim().toLocaleLowerCase();
+                if (!legacySeedNames.has(normalizedName) && !defaultNames.has(normalizedName)) {
+                  migrated.push(store);
+                }
+              });
+              window.localStorage.setItem(storageKey, JSON.stringify(migrated));
+              window.localStorage.setItem(seedVersionKey, String(currentSeedVersion));
+              return migrated;
+            }
+            return saved;
+          }
+          window.localStorage.setItem(seedVersionKey, String(currentSeedVersion));
         } catch (error) {
           console.warn('無法讀取已儲存的店家名單', error);
         }
