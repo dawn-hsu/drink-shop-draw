@@ -30,6 +30,7 @@
       width: 100%;
     }
     #drink-shop-draw * { box-sizing: border-box; }
+    #drink-shop-draw [hidden] { display: none !important; }
     #drink-shop-draw .ds-app {
       background: var(--ds-page);
       border: 1px solid var(--ds-line);
@@ -63,6 +64,24 @@
     #drink-shop-draw .ds-kicker,
     #drink-shop-draw .ds-count,
     #drink-shop-draw .ds-note { color: var(--ds-muted); font-size: 13px; }
+    #drink-shop-draw .ds-tabs {
+      background: var(--ds-surface);
+      border-bottom: 1px solid var(--ds-line);
+      display: flex;
+      gap: 6px;
+      padding: 8px 20px;
+    }
+    #drink-shop-draw .ds-tab {
+      background: transparent;
+      border-color: transparent;
+      color: var(--ds-muted);
+      padding: 8px 12px;
+    }
+    #drink-shop-draw .ds-tab.is-active {
+      background: var(--ds-surface-soft);
+      border-color: var(--ds-line);
+      color: var(--ds-text);
+    }
     #drink-shop-draw .ds-layout {
       display: grid;
       gap: 18px;
@@ -191,10 +210,120 @@
       text-align: center;
     }
     #drink-shop-draw .ds-toast.is-visible { display: block; }
+    #drink-shop-draw .ds-menu-view { padding: 20px; }
+    #drink-shop-draw .ds-menu-header {
+      align-items: end;
+      display: grid;
+      gap: 16px;
+      grid-template-columns: minmax(0, 1fr) minmax(220px, 320px);
+      margin-bottom: 18px;
+    }
+    #drink-shop-draw .ds-menu-intro { color: var(--ds-muted); font-size: 13px; margin-top: 5px; }
+    #drink-shop-draw .ds-search-wrap { position: relative; }
+    #drink-shop-draw .ds-search-wrap > svg {
+      color: var(--ds-muted);
+      left: 12px;
+      pointer-events: none;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    #drink-shop-draw .ds-menu-search { padding-left: 38px; width: 100%; }
+    #drink-shop-draw .ds-menu-list {
+      background: var(--ds-surface);
+      border: 1px solid var(--ds-line);
+      border-radius: 18px;
+      overflow: hidden;
+    }
+    #drink-shop-draw .ds-menu-item {
+      align-items: center;
+      background: var(--ds-surface);
+      border: 0;
+      border-radius: 0;
+      color: var(--ds-text);
+      display: grid;
+      gap: 12px;
+      grid-template-columns: minmax(0, 1fr) auto;
+      padding: 13px 16px;
+      text-align: left;
+      width: 100%;
+    }
+    #drink-shop-draw .ds-menu-item + .ds-menu-item { border-top: 1px solid var(--ds-line); }
+    #drink-shop-draw .ds-menu-item:hover { background: var(--ds-surface-soft); }
+    #drink-shop-draw .ds-menu-name { display: block; font-size: 15px; font-weight: 500; }
+    #drink-shop-draw .ds-menu-summary { color: var(--ds-muted); display: block; font-size: 12px; font-weight: 400; margin-top: 3px; }
+    #drink-shop-draw .ds-menu-arrow { color: var(--ds-muted); }
+    #drink-shop-draw .ds-menu-detail {
+      background: var(--ds-surface);
+      border: 1px solid var(--ds-line);
+      border-radius: 18px;
+      padding: 18px;
+    }
+    #drink-shop-draw .ds-menu-detail-head {
+      align-items: flex-start;
+      display: flex;
+      gap: 14px;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+    #drink-shop-draw .ds-menu-detail-title { font-size: 20px; font-weight: 500; margin: 0; }
+    #drink-shop-draw .ds-menu-meta {
+      color: var(--ds-muted);
+      display: flex;
+      flex-wrap: wrap;
+      font-size: 12px;
+      gap: 7px 14px;
+      margin-top: 6px;
+    }
+    #drink-shop-draw .ds-menu-meta span { align-items: center; display: inline-flex; gap: 5px; }
+    #drink-shop-draw .ds-menu-detail-actions { display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end; }
+    #drink-shop-draw .ds-menu-link {
+      align-items: center;
+      background: var(--ds-surface-soft);
+      border: 1px solid var(--ds-line);
+      border-radius: 10px;
+      color: var(--ds-text);
+      display: inline-flex;
+      font-size: 13px;
+      font-weight: 500;
+      gap: 6px;
+      padding: 8px 10px;
+      text-decoration: none;
+    }
+    #drink-shop-draw .ds-menu-link:focus-visible { outline: 3px solid color-mix(in srgb, var(--ds-brand) 35%, transparent); outline-offset: 2px; }
+    #drink-shop-draw .ds-menu-note {
+      background: var(--ds-surface-soft);
+      border-radius: 12px;
+      color: var(--ds-muted);
+      font-size: 13px;
+      margin-bottom: 18px;
+      padding: 10px 12px;
+    }
+    #drink-shop-draw .ds-menu-group + .ds-menu-group { margin-top: 18px; }
+    #drink-shop-draw .ds-menu-group h3 { font-size: 14px; font-weight: 500; margin: 0 0 7px; }
+    #drink-shop-draw .ds-menu-table { border-collapse: collapse; width: 100%; }
+    #drink-shop-draw .ds-menu-table th,
+    #drink-shop-draw .ds-menu-table td { border-bottom: 1px solid var(--ds-line); font-size: 14px; padding: 9px 0; }
+    #drink-shop-draw .ds-menu-table tr:last-child td { border-bottom: 0; }
+    #drink-shop-draw .ds-menu-table th { color: var(--ds-muted); font-size: 12px; font-weight: 400; text-align: left; }
+    #drink-shop-draw .ds-menu-table th:last-child,
+    #drink-shop-draw .ds-menu-table td:last-child { padding-left: 12px; text-align: right; white-space: nowrap; }
+    #drink-shop-draw .ds-price-pending { color: var(--ds-muted); }
+    #drink-shop-draw .ds-menu-empty {
+      color: var(--ds-muted);
+      padding: 32px 16px;
+      text-align: center;
+    }
     @media (max-width: 620px) {
       #drink-shop-draw .ds-layout { grid-template-columns: 1fr; padding: 14px; }
       #drink-shop-draw .ds-topbar { padding: 14px; }
+      #drink-shop-draw .ds-tabs { padding: 8px 14px; }
       #drink-shop-draw .ds-drum { min-height: 145px; }
+      #drink-shop-draw .ds-menu-view { padding: 14px; }
+      #drink-shop-draw .ds-menu-header { grid-template-columns: 1fr; }
+      #drink-shop-draw .ds-menu-detail { padding: 14px; }
+      #drink-shop-draw .ds-menu-detail-head { align-items: stretch; flex-direction: column; }
+      #drink-shop-draw .ds-menu-detail-actions { justify-content: flex-start; }
     }
     @media (prefers-reduced-motion: no-preference) {
       #drink-shop-draw .ds-drum.is-drawing { animation: ds-pulse .35s ease-in-out infinite alternate; }
@@ -211,51 +340,75 @@
           <p class="ds-kicker">把選擇交給手氣</p>
         </div>
       </div>
-      <span class="ds-count" aria-live="polite">5 家入籤</span>
+      <span class="ds-count" aria-live="polite">9 家入籤</span>
     </header>
 
-    <div class="ds-layout">
-      <section class="ds-panel" aria-labelledby="ds-candidates-title">
-        <div class="ds-heading-row">
-          <h2 id="ds-candidates-title">候選店家</h2>
-          <span class="ds-note">至少選 2 家</span>
-        </div>
-        <details class="ds-manager" open>
-          <summary>
-            <span class="ds-manager-label"><i data-lucide="list" aria-hidden="true"></i><span class="ds-manager-text">管理店家</span></span>
-            <i class="ds-manager-chevron" data-lucide="chevron-down" aria-hidden="true"></i>
-          </summary>
-          <div class="ds-manager-body">
-            <div class="ds-add">
-              <label class="ds-sr-only" for="ds-store-input">新增店家</label>
-              <input id="ds-store-input" type="text" maxlength="30" placeholder="輸入店名，例如：再睡5分鐘" autocomplete="off">
-              <button class="ds-secondary ds-add-button" type="button"><i data-lucide="plus" aria-hidden="true"></i>加入</button>
-            </div>
-            <div class="ds-list" aria-live="polite"></div>
-          </div>
-        </details>
-      </section>
+    <nav class="ds-tabs" aria-label="主要功能" role="tablist">
+      <button class="ds-tab is-active" type="button" role="tab" data-view="draw" aria-controls="ds-draw-view" aria-selected="true"><i data-lucide="shuffle" aria-hidden="true"></i>抽店家</button>
+      <button class="ds-tab" type="button" role="tab" data-view="menu" aria-controls="ds-menu-view" aria-selected="false"><i data-lucide="book-open" aria-hidden="true"></i>品牌菜單</button>
+    </nav>
 
-      <section class="ds-panel ds-draw-panel" aria-labelledby="ds-result-title">
-        <h2 id="ds-result-title">抽籤結果</h2>
-        <div class="ds-drum" aria-live="polite">
-          <div>
-            <div class="ds-result-icon"><i data-lucide="sparkles" aria-hidden="true"></i></div>
-            <p class="ds-result-label">準備好了嗎？</p>
-            <p class="ds-result-name">今天喝哪家</p>
+    <div class="ds-view" id="ds-draw-view" role="tabpanel" data-view-panel="draw">
+      <div class="ds-layout">
+        <section class="ds-panel" aria-labelledby="ds-candidates-title">
+          <div class="ds-heading-row">
+            <h2 id="ds-candidates-title">候選店家</h2>
+            <span class="ds-note">至少選 2 家</span>
           </div>
-        </div>
-        <div class="ds-actions">
-          <button class="ds-primary ds-draw" type="button"><i data-lucide="shuffle" aria-hidden="true"></i>開始抽店家</button>
-          <div class="ds-confirm">
-            <button class="ds-secondary ds-redraw" type="button">再抽一次</button>
-            <button class="ds-primary ds-accept" type="button"><i data-lucide="check" aria-hidden="true"></i>就喝這家</button>
+          <details class="ds-manager" open>
+            <summary>
+              <span class="ds-manager-label"><i data-lucide="list" aria-hidden="true"></i><span class="ds-manager-text">管理店家</span></span>
+              <i class="ds-manager-chevron" data-lucide="chevron-down" aria-hidden="true"></i>
+            </summary>
+            <div class="ds-manager-body">
+              <div class="ds-add">
+                <label class="ds-sr-only" for="ds-store-input">新增店家</label>
+                <input id="ds-store-input" type="text" maxlength="30" placeholder="輸入店名，例如：再睡5分鐘" autocomplete="off">
+                <button class="ds-secondary ds-add-button" type="button"><i data-lucide="plus" aria-hidden="true"></i>加入</button>
+              </div>
+              <div class="ds-list" aria-live="polite"></div>
+            </div>
+          </details>
+        </section>
+
+        <section class="ds-panel ds-draw-panel" aria-labelledby="ds-result-title">
+          <h2 id="ds-result-title">抽籤結果</h2>
+          <div class="ds-drum" aria-live="polite">
+            <div>
+              <div class="ds-result-icon"><i data-lucide="sparkles" aria-hidden="true"></i></div>
+              <p class="ds-result-label">準備好了嗎？</p>
+              <p class="ds-result-name">今天喝哪家</p>
+            </div>
           </div>
-          <p class="ds-toast" role="status"></p>
-          <button class="ds-secondary ds-new-round" type="button"><i data-lucide="rotate-ccw" aria-hidden="true"></i>重新抽一輪</button>
-        </div>
-      </section>
+          <div class="ds-actions">
+            <button class="ds-primary ds-draw" type="button"><i data-lucide="shuffle" aria-hidden="true"></i>開始抽店家</button>
+            <div class="ds-confirm">
+              <button class="ds-secondary ds-redraw" type="button">再抽一次</button>
+              <button class="ds-primary ds-accept" type="button"><i data-lucide="check" aria-hidden="true"></i>就喝這家</button>
+            </div>
+            <button class="ds-secondary ds-result-menu" type="button" hidden><i data-lucide="book-open" aria-hidden="true"></i>查看這家菜單</button>
+            <p class="ds-toast" role="status"></p>
+            <button class="ds-secondary ds-new-round" type="button"><i data-lucide="rotate-ccw" aria-hidden="true"></i>重新抽一輪</button>
+          </div>
+        </section>
+      </div>
     </div>
+
+    <section class="ds-view ds-menu-view" id="ds-menu-view" role="tabpanel" data-view-panel="menu" aria-labelledby="ds-menu-title" hidden>
+      <div class="ds-menu-header">
+        <div>
+          <h2 id="ds-menu-title">常見連鎖品牌菜單庫</h2>
+          <p class="ds-menu-intro">整理 20 家完整常態品項與北部一般門市價格；當期限定會另行標示。</p>
+        </div>
+        <div class="ds-search-wrap">
+          <i data-lucide="search" aria-hidden="true"></i>
+          <label class="ds-sr-only" for="ds-menu-search">搜尋品牌</label>
+          <input class="ds-menu-search" id="ds-menu-search" type="text" placeholder="搜尋品牌或飲品" autocomplete="off">
+        </div>
+      </div>
+      <div class="ds-menu-list" aria-live="polite"></div>
+      <div class="ds-menu-detail" aria-live="polite" hidden></div>
+    </section>
   </section>
 
   <script>
@@ -275,7 +428,13 @@
       const redrawButton = root.querySelector('.ds-redraw');
       const acceptButton = root.querySelector('.ds-accept');
       const newRoundButton = root.querySelector('.ds-new-round');
+      const resultMenuButton = root.querySelector('.ds-result-menu');
       const toast = root.querySelector('.ds-toast');
+      const tabs = [...root.querySelectorAll('.ds-tab')];
+      const viewPanels = [...root.querySelectorAll('[data-view-panel]')];
+      const menuSearch = root.querySelector('.ds-menu-search');
+      const menuList = root.querySelector('.ds-menu-list');
+      const menuDetail = root.querySelector('.ds-menu-detail');
       const storageKey = 'drink-shop-draw-stores-v1';
       const seedVersionKey = 'drink-shop-draw-seed-version';
       const currentSeedVersion = 3;
@@ -289,6 +448,311 @@
         { id: 7, name: '大苑子', active: true },
         { id: 8, name: '茶湯會', active: true },
         { id: 9, name: '珍煮丹', active: true }
+      ];
+      const menuCheckedAt = '2026/08/21';
+      const menuGroup = (name, items) => ({
+        name,
+        items: items.map(([itemName, price = '']) => ({ name: itemName, price }))
+      });
+      const menuCatalog = [
+        {
+          name: '五十嵐', aliases: ['五十嵐', '50嵐'], sourceUrl: 'https://50lan.com/web/products.asp',
+          region: '台北、新北、基隆一般門市', checkedAt: menuCheckedAt,
+          priceSourceUrl: 'https://baliman.tw/blog/post/50lan-menu',
+          priceNote: '北區常態品項與售價依 2026 年 7 月調價後公開價目整理；季節品項及特殊店型可能不同。',
+          groups: [
+            menuGroup('找好茶', [['茉莉綠茶', 'M 35／L 40'], ['阿薩姆紅茶', 'M 35／L 40'], ['四季春青茶', 'M 35／L 40'], ['黃金烏龍', 'M 35／L 40'], ['檸檬綠', 'M 50／L 60'], ['梅の綠', 'M 50／L 60'], ['桔子綠', 'M 50／L 60'], ['8冰綠', 'M 50／L 60'], ['養樂多綠', 'M 50／L 60'], ['旺來紅', 'M 50／L 60'], ['旺來綠', 'M 50／L 60'], ['柚子紅', 'M 50／L 60'], ['柚子綠', 'M 50／L 60'], ['柚子青', 'M 50／L 60'], ['柚子烏龍', 'M 50／L 60'], ['麵茶紅茶', 'M 50／L 60'], ['麵茶綠茶', 'M 50／L 60'], ['麵茶青茶', 'M 50／L 60'], ['麵茶烏龍', 'M 50／L 60']]),
+            menuGroup('找口感', [['四季春＋珍波椰', 'M 40／L 50'], ['波霸紅茶', 'M 40／L 50'], ['波霸綠茶', 'M 40／L 50'], ['波霸青茶', 'M 40／L 50'], ['波霸烏龍', 'M 40／L 50'], ['波霸奶茶', 'M 50／L 60'], ['波霸奶綠', 'M 50／L 60'], ['波霸烏龍奶茶', 'M 50／L 60'], ['珍珠紅茶', 'M 50／L 60'], ['珍珠綠茶', 'M 50／L 60'], ['珍珠青茶', 'M 50／L 60'], ['珍珠烏龍', 'M 50／L 60'], ['珍珠奶茶', 'M 50／L 60'], ['椰果奶茶', 'M 50／L 60'], ['布丁奶茶', 'M 60／L 75'], ['布丁奶綠', 'M 60／L 75'], ['布丁紅茶', 'M 50／L 60'], ['布丁綠茶', 'M 50／L 60'], ['布丁青茶', 'M 50／L 60'], ['布丁烏龍', 'M 50／L 60']]),
+            menuGroup('找奶茶', [['奶茶', 'M 50／L 60'], ['奶綠', 'M 50／L 60'], ['紅茶瑪奇朵', 'M 50／L 60'], ['烏龍瑪奇朵', 'M 50／L 60'], ['四季春奶青', 'M 50／L 60'], ['黃金烏龍奶茶', 'M 50／L 60'], ['阿華田', 'M 50／L 60'], ['麵茶奶茶', 'M 60／L 75'], ['麵茶奶綠', 'M 60／L 75']]),
+            menuGroup('找拿鐵', [['紅茶拿鐵', 'M 60／L 75'], ['綠茶拿鐵', 'M 60／L 75'], ['金烏龍拿鐵', 'M 60／L 75'], ['阿華田拿鐵', 'M 60／L 75'], ['重焙烏龍拿鐵', 'M 60／L 75'], ['麵茶紅茶拿鐵', 'M 65／L 80']]),
+            menuGroup('找新鮮', [['檸檬汁', 'M 55／L 65'], ['金桔檸檬', 'M 55／L 65'], ['檸檬梅汁', 'M 55／L 65'], ['養樂多多', 'M 55／L 65'], ['柚子茶', 'M 50／L 60'], ['鮮柚汁（產季限定）', 'M 60／L 75'], ['葡萄柚多多（產季限定）', 'M 65／L 80']]),
+            menuGroup('冰淇淋', [['冰淇淋紅茶', 'M 50／L 60'], ['冰淇淋綠茶', 'M 50／L 60'], ['芒果青', 'M 50／L 60'], ['荔枝烏龍', 'M 50／L 60']])
+          ]
+        },
+        {
+          name: '得正', aliases: ['得正'], sourceUrl: 'https://dejeng.com/drinks/',
+          region: '台灣一般門市', checkedAt: menuCheckedAt,
+          priceSourceUrl: 'https://supertaste.tvbs.com.tw/accessories/350077',
+          priceNote: '品項依官網，常態售價依 2026 公開價目整理；百貨及限定品另計。',
+          groups: [
+            menuGroup('原茶', [['紅茶', 'M 25／L 30'], ['綠茶', 'M 25／L 30'], ['春烏龍', 'M 30／L 35'], ['輕烏龍', 'M 30／L 35'], ['焙烏龍', 'M 30／L 35'], ['緋烏龍', 'M 35／L 40']]),
+            menuGroup('經典奶茶', [['奶茶', 'M 45／L 50'], ['焙烏龍奶茶', 'M 45／L 50'], ['珍珠奶茶', 'M 55／L 60'], ['黃金珍珠奶綠', 'M 55／L 60'], ['烘吉奶茶', 'M 50']]),
+            menuGroup('水果烏龍', [['檸檬春烏龍', 'M 55／L 65'], ['香橙春烏龍', 'M 60／L 70'], ['甘蔗春烏龍', 'M 60／L 70'], ['青梅春烏龍', 'M 50／L 60'], ['優酪春烏龍', 'M 55／L 65'], ['雙柚金烏龍', 'M 55／L 65']]),
+            menuGroup('鮮奶', [['紅茶鮮奶', 'M 55／L 65'], ['輕烏龍鮮奶', 'M 55／L 65'], ['焙烏龍鮮奶', 'M 55／L 65'], ['烘吉鮮奶', 'M 70']]),
+            menuGroup('芝士奶蓋', [['芝士奶蓋春烏龍', 'M 50／L 60'], ['芝士奶蓋焙烏龍', 'M 50／L 60'], ['芝士奶蓋阿華田', 'M 55／L 65'], ['芝士奶蓋烘吉茶', 'M 55／L 65']]),
+            menuGroup('當期限定', [['蜜蘋苦瓜綠', 'M 60／L 70'], ['蜜蘋苦瓜奶綠', 'M 65／L 75'], ['蜜蘋苦瓜綠茶鮮奶', 'M 75／L 85']])
+          ]
+        },
+        {
+          name: '青山', aliases: ['青山'], sourceUrl: 'https://peak-tea.com/wp-content/uploads/2026/02/%E9%9D%92%E5%B1%B1-2026%E8%8F%9C%E5%96%AEA3_%E4%B8%AD%E6%96%87-1-scaled.jpg',
+          region: '台灣門市', checkedAt: menuCheckedAt,
+          priceNote: '售價依青山官方 2026 完整菜單圖整理。',
+          groups: [
+            menuGroup('青茶', [['春青', 'M 30／L 35'], ['夏青', 'M 30／L 35'], ['秋青', 'M 40／L 45'], ['冬青', 'M 55／L 60']]),
+            menuGroup('無咖啡因', [['東方菊花茶', 'M 45／L 55'], ['西穀蕎麥茶', 'M 30／L 40'], ['南非國寶茶', 'M 40／L 50'], ['北風桂花玄米茶', 'M 35／L 45']]),
+            menuGroup('純茶', [['綠水', 'M 25／L 30'], ['天蟬紅茶', 'M 35／L 40']]),
+            menuGroup('奶香', [['山峰奶茶', 'M 45／L 50'], ['夏青那堤', 'M 50／L 60'], ['蕎麥那堤', 'M 50／L 65'], ['天蟬那堤', 'M 55／L 65']]),
+            menuGroup('鮮果', [['白甘蔗春青', 'M 55／L 60'], ['香檸綠水', 'M 55／L 60'], ['柳丁綠水', 'M 65／L 70'], ['紅柚綠水', 'M 65／L 70'], ['橘子春青', 'M 65／L 70'], ['水梨春青', 'M 70／L 75'], ['纖蔗春青', 'M 75／L 80']]),
+            menuGroup('調茶', [['青山綠水', 'M 35／L 40'], ['春青菊花', 'M 45／L 55'], ['蜂蜜冬露', 'L 50'], ['杏香冬露', 'L 50'], ['杏花冬露', 'L 55'], ['多多綠水', 'L 55']]),
+            menuGroup('奶蓋', [['春青奶蓋', 'M 45／L 50'], ['海鹽奶蓋玄米', 'M 55／L 65'], ['青山奶蓋紅茶', 'M 50／L 55'], ['海鹽奶蓋綠水', 'M 55／L 60']])
+          ]
+        },
+        {
+          name: 'CoCo都可', aliases: ['CoCo都可', 'CoCo'], sourceUrl: 'https://www.coco-tea.com/products',
+          region: '台灣門市；實際品項依分店', checkedAt: menuCheckedAt,
+          priceSourceUrl: 'https://supertaste.tvbs.com.tw/hot/347016',
+          priceNote: '品項依品牌官網，售價依 2026 年 7 月台灣公開價目整理。',
+          groups: [
+            menuGroup('激推水果茶', [['21歲輕檸烏龍', 'M 45／L 55'], ['檸檬奇遇金桔', 'L 55'], ['金桔檸檬', 'M 60／L 70'], ['粉角檸檬冬瓜', 'M 55／L 65'], ['百香綠茶', 'M 45／L 55'], ['芒果綠茶', 'M 45／L 55'], ['芒裡偷閒奇亞籽', 'L 55'], ['綠茶養樂多', 'L 70'], ['蕎麥冬瓜露', 'M 45／L 50']]),
+            menuGroup('經典果粒茶', [['百香雙響炮', 'L 75'], ['紅柚雙響炮', 'L 75'], ['生椰楊枝甘露', 'M 70／L 90'], ['葡萄柚果粒茶', 'L 70']]),
+            menuGroup('經典純茶', [['茉莉綠茶', 'M 35／L 40'], ['21歲青烏龍', 'M 35／L 40'], ['四季春青茶', 'M 35／L 40'], ['高山紅茶', 'M 35／L 40'], ['四季珍椰青', 'M 50／L 55'], ['仙草蜜', 'M 35／L 40']]),
+            menuGroup('奶茶與鮮奶茶', [['奶茶三兄弟', 'L 70'], ['阿薩姆奶茶', 'M 40／L 50'], ['珍珠奶茶', 'M 50／L 60'], ['粉角奶茶', 'M 50／L 60'], ['珍珠鮮奶茶', 'M 65／L 75'], ['粉角鮮奶茶', 'M 65／L 75'], ['茉香凍奶綠', 'L 60'], ['手作仙草凍乳', 'L 70'], ['西谷米奶茶', 'M 50／L 60'], ['英式鮮奶茶', 'M 55／L 75']]),
+            menuGroup('職人金獎咖啡', [['職人美式', '14oz 50'], ['職人拿鐵', '14oz 65'], ['珍珠職人拿鐵', '14oz 75'], ['粉角職人拿鐵', '14oz 75'], ['紅柚香檸美式', '80'], ['西西里手導檸檬美式', '75'], ['粉角生椰拿鐵', '85']]),
+            menuGroup('冰沙', [['綠豆沙', 'M 50／L 60'], ['綠豆沙牛乳', 'M 60／L 75'], ['芒果冰沙', 'M 50／L 60'], ['芒果沙牛奶', 'M 60／L 75']])
+          ]
+        },
+        {
+          name: '可不可熟成紅茶', aliases: ['可不可熟成紅茶', '可不可'], sourceUrl: 'https://kebuke.com/menu/',
+          region: '北部及離島一般門市', checkedAt: menuCheckedAt,
+          priceNote: '售價依官方「北部及離島」欄位整理；商場與特殊門市可能不同。',
+          groups: [
+            menuGroup('乎乾好茶', [['熟成紅茶', 'M 35／L 40'], ['麗春紅茶', 'M 35／L 40'], ['春芽綠茶', 'M 35／L 40'], ['胭脂紅茶', 'M 45／L 50'], ['半熟烏龍', 'M 35／L 40'], ['茶花輕焙烏龍', 'M 45／L 50']]),
+            menuGroup('乎乾冬瓜', [['雪花冷露', 'M 35／L 40'], ['熟成冷露', 'M 40／L 45'], ['春芽冷露', 'M 40／L 45'], ['胭脂冷露', 'M 45／L 50'], ['檸檬冷露', 'M 50／L 60'], ['半熟烏龍冷露', 'M 40／L 45']]),
+            menuGroup('乎乾手作', [['熟檸紅茶', 'M 45／L 55'], ['春檸綠茶', 'M 45／L 55'], ['春梅冰茶', 'M 50／L 60'], ['太妃熟成', 'M 50／L 55'], ['金蜜熟成', 'M 53／L 63'], ['胭脂多多', 'M 50／L 60'], ['茶花烏龍梅', 'M 50／L 60'], ['茶花烏龍多多', 'M 50／L 60'], ['蘋果麗春', 'M 59／L 69'], ['蘋果春芽', 'M 59／L 69'], ['蘋果茶花烏龍', 'M 65／L 75']]),
+            menuGroup('乎乾好眠', [['輕纖穀奈茶', 'M 40／L 50'], ['穀奈冷露', 'M 45／L 55'], ['穀奈歐蕾', 'M 59／L 69'], ['金蜜檸檬', 'M 53／L 63']]),
+            menuGroup('乎乾鮮奶茶', [['熟成歐蕾', 'M 55／L 65'], ['冷露歐蕾', 'M 55／L 65'], ['金蜜歐蕾', 'M 60／L 70'], ['胭脂歐蕾', 'M 59／L 69'], ['白玉歐蕾', 'M 60／L 70'], ['鴛鴦歐蕾', 'M 60／L 70'], ['熟成榛果歐蕾', 'M 60／L 70'], ['墨玉鴛鴦歐蕾', 'M 70／L 80'], ['半熟烏龍歐蕾', 'M 59／L 69']]),
+            menuGroup('乎乾奶茶', [['熟成奶茶', 'M 45／L 55'], ['春芽奶茶', 'M 45／L 55'], ['胭脂奶茶', 'M 50／L 60'], ['白玉奶茶', 'M 50／L 60']]),
+            menuGroup('季節限定', [['金蜜烏龍', 'M 53／L 63'], ['馥莓冰茶', 'M 40／L 45'], ['紫蘇馥莓熟成', 'M 65／L 75'], ['生茶白玉冰淇淋', 'M 59'], ['生茶烏龍厚乳', 'M 69']])
+          ]
+        },
+        {
+          name: '迷客夏', aliases: ['迷客夏', 'Milksha'], sourceUrl: 'https://www.milksha.com/products.php',
+          region: '北部一般門市', checkedAt: menuCheckedAt,
+          priceSourceUrl: 'https://dailydietitian.com.tw/%E8%BF%B7%E5%AE%A2%E5%A4%8F%E8%8F%9C%E5%96%AE-%E6%9C%80%E6%96%B0%E5%83%B9%E7%9B%AE%E8%A1%A8-%E6%96%B0%E5%93%81%E6%83%85%E5%A0%B1-%E5%84%AA%E6%83%A0%E5%BF%AB%E8%A8%8A/',
+          priceNote: '品項依官網，售價依 2026 北部一般門市價目整理；百貨櫃位另計。',
+          groups: [
+            menuGroup('醇萃茶', [['娜杯紅茶', 'L 45'], ['英倫伯爵紅茶', 'L 40'], ['大正醇香紅茶', 'L 40'], ['原片初露青茶', 'L 40'], ['茉莉原淬綠茶', 'L 40'], ['琥珀高峰烏龍', 'L 40']]),
+            menuGroup('鮮奶茶', [['娜杯紅茶拿鐵', 'M 60／L 70'], ['伯爵紅茶拿鐵', 'M 55／L 65'], ['大正紅茶拿鐵', 'M 55／L 65'], ['琥珀烏龍拿鐵', 'M 55／L 65'], ['茉香綠茶拿鐵', 'M 55／L 65'], ['原片青茶拿鐵', 'M 55／L 65'], ['珍珠伯爵紅茶拿鐵', 'M 65／L 75'], ['珍珠大正紅茶拿鐵', 'M 65／L 75'], ['珍珠娜杯紅茶拿鐵', 'M 70／L 80']]),
+            menuGroup('綠光牧場鮮奶', [['芋頭鮮奶', 'M 70／L 90'], ['珍珠鮮奶', 'M 70／L 90'], ['手炒黑糖鮮奶', 'M 65／L 85'], ['嫩仙草凍奶', 'M 65／L 85'], ['綠光鮮奶家庭號', '169']]),
+            menuGroup('牧場鮮調', [['桂香原片青', 'L 50'], ['桂香青檸蜂蜜粉粿', 'L 65'], ['柳丁綠茶', 'L 70'], ['柳丁青茶', 'L 70'], ['白甘蔗青茶', 'L 75'], ['青檸香茶', 'L 70'], ['蜂蜜檸檬晶凍', 'L 60'], ['香柚綠茶', 'L 60'], ['養樂多綠茶', 'L 55'], ['冬瓜青茶', 'L 55'], ['冰萃柳丁', 'L 65'], ['冰萃檸檬', 'L 65']]),
+            menuGroup('無咖啡因', [['輕纖蕎麥茶', 'L 45'], ['輕纖蕎麥拿鐵', 'M 65／L 75'], ['焙香決明大麥', 'L 35'], ['焙香大麥拿鐵', 'M 55／L 65'], ['原鄉冬瓜茶', 'L 40'], ['冬瓜檸檬', 'L 55'], ['冬瓜麥茶', 'L 55']]),
+            menuGroup('夏季限定', [['荔荔茉莉', 'L 50'], ['荔荔蜜桃椰果', 'L 65'], ['荔多鮮奶果昔', 'M 60'], ['蜜桃烏龍', 'L 70'], ['蜜桃茉莉', 'L 70'], ['夏嶼果茶', 'L 65'], ['海鹽芒果綠', 'L 65'], ['蔗杯紅柚凍飲', 'L 75']])
+          ]
+        },
+        {
+          name: '大苑子', aliases: ['大苑子'], sourceUrl: 'https://www.dayungs.com/product/?lang=en',
+          region: '北部一般門市；鮮果品項依季節', checkedAt: menuCheckedAt,
+          priceSourceUrl: 'https://baliman.tw/blog/post/dayunzi-menu',
+          priceNote: '品項依官網，售價依 2026 北部公開價目整理；鮮果與季節品項以當期供應為準。',
+          groups: [
+            menuGroup('著時必喝', [['愛文芒果冰沙', 'M 95／L 130'], ['愛文翡翠', 'L 75／分享瓶 110'], ['鳳梨冰茶', 'L 75'], ['芭梨戀人', 'L 75'], ['鳳梨艾波', 'L 75'], ['巨峰葡萄芭樂', 'L 85'], ['巨峰葡萄冰茶', 'L 75'], ['巨峰葡萄雪沙', 'L 90']]),
+            menuGroup('果茶', [['大苑子水果茶', 'L 80'], ['春熙柳丁翡翠', 'L 75／分享瓶 110'], ['台灣檸檬春烏龍', 'L 65'], ['翡翠檸檬', 'L 65／分享瓶 100'], ['埔里百香果綠', 'L 65／分享瓶 100'], ['鮮搾葡萄柚綠', 'L 75／分享瓶 110']]),
+            menuGroup('特調', [['古早味冬瓜茶', 'M 40／L 70'], ['蘋果醋冰茶', 'M 60／L 95'], ['百年蜜仙草', 'M 60／L 95'], ['百香愛玉', 'L 65'], ['檸檬愛玉', 'L 65'], ['冬瓜檸檬', 'L 65'], ['冬瓜檸檬奇亞籽', 'L 65'], ['養樂多綠茶', 'M 55／L 90'], ['蘋果多輕飲', 'L 70'], ['蜂蜜檸檬', 'L 75'], ['蜂蜜檸檬奇亞籽', 'L 75'], ['柚美粒', 'L 75／分享瓶 110']]),
+            menuGroup('冰釀銀耳', [['冰釀蜜朵朵', 'L 75'], ['鮮搾蘋果蜜朵朵', 'L 75'], ['錫蘭紅茶蜜朵朵', 'L 65']]),
+            menuGroup('鮮榨果汁', [['羽衣甘藍5蔬果汁', 'L 79'], ['天天5蔬果汁', 'L 69'], ['芭樂甜橙', 'L 85'], ['芭樂甜草', 'L 75／分享瓶 110'], ['芭樂檸檬', 'L 75／分享瓶 110'], ['芭樂梅', 'L 75／分享瓶 110'], ['番茄梅', 'L 75／分享瓶 110']]),
+            menuGroup('好茶', [['台灣春烏龍', 'L 45／分享瓶 75'], ['古城錫蘭紅茶', 'L 35／分享瓶 60'], ['文山青茶', 'L 35／分享瓶 60'], ['纖活綠茶', 'L 35／分享瓶 60'], ['百年仙草干茶', 'L 40／分享瓶 70']]),
+            menuGroup('許慶良鮮乳', [['珍珠鮮奶茶', 'M 55／L 70／分享瓶 105'], ['珍珠鮮奶綠', 'M 55／L 70／分享瓶 105'], ['鮮奶茶', 'M 55／L 70／分享瓶 105'], ['鮮奶綠', 'M 55／L 70／分享瓶 105'], ['鮮奶冬瓜', 'M 55／L 70／分享瓶 105'], ['觀音拿鐵', 'M 55／L 70／分享瓶 105'], ['奶酪鮮奶茶', 'L 80']]),
+            menuGroup('奶茶', [['珍珠奶茶', 'M 50／L 60／分享瓶 95'], ['奶茶', 'M 50／L 60／分享瓶 95'], ['纖活奶綠', 'M 50／L 60／分享瓶 95']]),
+            menuGroup('Red Bull能量', [['能量小白桃', 'L 99'], ['能量小柳丁', 'L 99'], ['能量小葡丁', 'L 99'], ['能量大巨峰', 'L 99'], ['能量小巨峰', 'L 99']])
+          ]
+        },
+        {
+          name: '茶湯會', aliases: ['茶湯會', 'TP Tea'], sourceUrl: 'https://tp-tea.com/menu/',
+          region: '台北、新北、桃園、新竹、宜蘭、花蓮一般門市', checkedAt: menuCheckedAt,
+          priceNote: '售價依官方北區飲品頁整理；百貨、商場及限定店可能不同。',
+          groups: [
+            menuGroup('暢銷排行', [['蜜香紅茶／珍珠', 'L 45'], ['翡翠檸檬', 'L 65'], ['粉粿蕎麥四季春', 'L 65'], ['觀音拿鐵／珍珠', 'L 75'], ['紅豆拿鐵／珍珠', 'L 80']]),
+            menuGroup('雅韻烏龍', [['碳燒鐵觀音', 'L 40'], ['四季春／珍珠', 'L 40'], ['冬瓜鐵觀音', 'L 55'], ['金桂觀音', 'L 50'], ['鐵觀音奶茶', 'L 55'], ['冬瓜檸檬鐵觀音', 'L 60'], ['冬瓜觀音拿鐵／珍珠', 'L 75'], ['四季春蜂蜜拿鐵／珍珠', 'L 75'], ['金桂觀音拿鐵／珍珠', 'L 75']]),
+            menuGroup('香醇紅茶', [['蔗香紅茶', 'L 35'], ['功夫紅茶', 'L 40'], ['珍珠奶茶', 'L 60'], ['錫蘭烏瓦檸檬紅茶', 'L 60'], ['紅茶拿鐵／珍珠', 'L 75'], ['紅豆拿鐵／珍珠', 'L 80'], ['普洱咖啡凍奶茶', 'L 80']]),
+            menuGroup('清爽綠茶', [['特級翡翠綠', 'L 40'], ['金桂茉莉', 'L 50'], ['特級茉莉奶綠', 'L 55'], ['珍珠特級茉莉奶綠', 'L 60'], ['蜂蜜綠茶', 'L 55'], ['百香綠茶', 'L 55'], ['水果茶', 'L 65'], ['翡翠拿鐵／珍珠', 'L 75']]),
+            menuGroup('蕎麥系列', [['黃金蕎麥', 'L 45'], ['蕎麥四季春', 'L 55'], ['金桂蕎麥', 'L 60'], ['粉粿蕎麥四季春', 'L 65']]),
+            menuGroup('無茶也歡', [['檸檬冬瓜', 'L 60'], ['檸檬蜜', 'L 65'], ['拿鐵冬瓜', 'L 75']])
+          ]
+        },
+        {
+          name: '珍煮丹', aliases: ['珍煮丹', 'Truedan'], sourceUrl: 'https://www.truedan.com.tw/product.php',
+          region: '台灣一般門市', checkedAt: menuCheckedAt,
+          priceSourceUrl: 'https://baliman.tw/blog/post/jenjudan-menu',
+          priceNote: '品項依官網，售價依 2026 常態價目整理；百貨門市通常每杯加 5 元。',
+          groups: [
+            menuGroup('職人黑糖鮮奶', [['黑糖珍珠鮮奶', 'M 60／L 80'], ['黑糖珍珠厚鮮奶', 'M 65／L 80'], ['黑糖布蕾珍珠鮮奶', 'M 75／L 95'], ['黑糖綿芋鮮奶', 'M 65／L 85'], ['黑糖鮮奶', 'M 55／L 75'], ['黑糖粉粿鮮奶', 'M 65／L 85'], ['黑糖仙草鮮奶', 'M 55／L 75']]),
+            menuGroup('職人黑糖飲', [['手熬黑糖檸檬', 'L 50'], ['手熬黑糖冬瓜茶', 'L 40'], ['黑糖檸檬冬瓜', 'L 45'], ['黑糖珍珠豆花（北區限定）', 'M 55／L 65']]),
+            menuGroup('世界茶光譜', [['不知春', 'L 40／奶蓋 60'], ['蜜夏紅', 'L 40／奶蓋 60'], ['雲霧烏龍', 'L 40／奶蓋 60'], ['復刻紅茶', 'L 35／奶蓋 55'], ['木梨茉莉', 'L 35／奶蓋 55'], ['一包蕎麥', 'L 55／奶蓋 75'], ['焙香蕎麥', 'L 50／奶蓋 70'], ['山茶花採蜜青茶', 'L 60／奶蓋 80']]),
+            menuGroup('島嶼果茶', [['西瓜烏龍', 'L 70'], ['水蜜桃烏龍', 'L 75'], ['多多綠', 'L 55'], ['熟梅冰茶', 'L 55'], ['蜂蜜菊花茶', 'L 45／加檸檬 50'], ['青檸桂花釀粿粿', 'L 70'], ['山茶花採蜜檸檬桂花', 'L 70'], ['百香翡翠', 'L 60'], ['百香雙響', 'L 65']]),
+            menuGroup('私房奶茶與拿鐵', [['珍珠奶茶', 'M 45／L 60'], ['煮母奶茶', 'M 40／L 55'], ['茉白奶綠', 'M 40／L 55'], ['手採烏龍奶', 'M 40／L 55'], ['芋珍雙Q奶茶', 'M 55／L 70'], ['泰泰鮮奶茶', 'M 55／L 75'], ['波波粿粿鮮奶茶', 'M 65／L 75'], ['布蕾紅茶拿鐵', 'M 75／L 95'], ['十份芋芋鮮奶', 'M 70／L 85'], ['姍姍紅茶拿鐵', 'M 50／L 65'], ['琥珀烏龍拿鐵', 'M 50／L 65']])
+          ]
+        },
+        {
+          name: '清心福全', aliases: ['清心福全', '清心'], sourceUrl: 'https://www.chingshin.tw/product.php',
+          region: '北部一般門市', checkedAt: menuCheckedAt,
+          priceSourceUrl: 'https://baliman.tw/blog/post/qingxin-menu',
+          priceNote: '品項依官網，售價依 2025 年 12 月版北部標準價目整理；加盟門市可能微調。',
+          groups: [
+            menuGroup('茗品', [['烏龍綠茶', 'M 30／L 35'], ['特級綠茶', 'M 30／L 35'], ['錫蘭紅茶', 'M 30／L 35'], ['極品菁茶', 'M 30／L 35'], ['原鄉四季', 'M 30／L 35'], ['特選普洱', 'M 30／L 35']]),
+            menuGroup('奶茶', [['茶凍奶綠', 'L 60'], ['珍珠奶茶', 'M 50／L 60'], ['粉圓奶茶', 'M 50／L 60'], ['錫蘭奶紅', 'M 50／L 60'], ['烏龍奶茶', 'M 50／L 60'], ['特級奶綠', 'M 50／L 60'], ['仙草凍奶茶', 'M 50／L 60'], ['椰果奶茶', 'M 50／L 60'], ['布丁奶茶', 'M 50／L 60'], ['咖啡凍奶茶', 'M 50／L 60'], ['蜂蜜奶茶', 'M 50／L 65'], ['芝麻奶茶', 'L 70'], ['琥珀黑糖奶茶', 'L 70']]),
+            menuGroup('特調', [['妃嚐美荔', 'L 75'], ['荔枝紅茶', 'L 60'], ['梅子綠茶', 'M 45／L 55'], ['蜂蜜烏龍', 'M 45／L 55'], ['蜂蜜綠茶', 'M 45／L 55'], ['濃情巧克力', 'M 45／L 55'], ['頂級可可', 'M 50／L 65'], ['蜜茶', 'M 35／L 45'], ['情人茶', 'M 50／L 60'], ['咖啡奶茶', 'M 50／L 65'], ['紅牛能量紅茶', 'L 80'], ['紅牛能量藍莓蜜', 'L 80'], ['巨峰葡萄能量優多', 'L 80'], ['巨峰葡萄能量果醋', 'L 80']]),
+            menuGroup('鮮奶與拿鐵', [['粉戀莓莓', 'L 85'], ['茉綠茶凍拿鐵', 'L 70'], ['雙凍拿鐵', 'L 70'], ['鮮奶茶', 'M 55／L 70'], ['珍珠鮮奶茶', 'M 55／L 70'], ['粉圓鮮奶茶', 'M 55／L 70'], ['珍珠蜂蜜鮮奶普洱', 'M 55／L 75'], ['頂級可可拿鐵', 'M 65／L 85'], ['鮮奶冬瓜', 'L 65'], ['珍珠芝麻拿鐵', 'L 75'], ['甘蔗鮮奶', 'L 85'], ['珍珠琥珀黑糖鮮奶', 'M 65／L 75']]),
+            menuGroup('季節鮮果', [['柳橙綠', 'L 70'], ['紅心芭樂檸檬', 'L 75'], ['蜜桃凍紅茶', 'L 75'], ['甘蔗四季', 'L 65'], ['甘蔗菁茶', 'L 65'], ['甘蔗金桔', 'L 75'], ['鳳梨紅茶', 'M 50／L 60'], ['蜂蜜檸檬', 'M 60／L 75'], ['檸檬汁', 'M 50／L 65'], ['金桔檸檬', 'M 55／L 70'], ['桔茶', 'M 55／L 70'], ['檸檬紅茶', 'M 50／L 65'], ['檸檬綠茶', 'M 50／L 65'], ['蘆薈蜂蜜檸檬', 'M 70／L 90']]),
+            menuGroup('優多', [['紅心芭樂優多', 'L 75'], ['優多莓莓', 'L 85'], ['優多百香果綠茶', 'L 65'], ['優多檸檬', 'L 70'], ['優多綠茶', 'L 55'], ['蘆薈優多綠茶', 'L 75']]),
+            menuGroup('冬瓜與百香果', [['冬瓜茶', 'L 40'], ['冬瓜菁茶', 'L 45'], ['冬瓜檸檬', 'L 60'], ['百香果綠茶', 'L 60'], ['雙Q百香果綠茶', 'L 70']]),
+            menuGroup('果醋', [['荔枝蘋果醋', 'L 75'], ['蘋果醋', 'M 45／L 55'], ['蘋果醋紅茶', 'M 50／L 60'], ['蜂蜜蘋果醋', 'M 50／L 65'], ['藍莓醋', 'M 50／L 60'], ['蜂蜜藍莓醋', 'M 55／L 70']]),
+            menuGroup('冰淇淋', [['冰淇淋紅茶', 'M 50／L 60'], ['冰淇淋奶茶', 'M 55／L 75'], ['紅茶三兄弟', 'L 75']]),
+            menuGroup('冬季熱飲', [['白韻杏仁奶', 'L 65'], ['白韻杏仁鮮奶', 'L 85'], ['白韻杏仁頂級可可', 'L 80'], ['桂圓茶', 'M 45／L 55'], ['桂圓鮮奶茶', 'M 65／L 80'], ['薑薑好茶', 'M 45／L 55'], ['薑薑奶茶', 'M 55／L 70']])
+          ]
+        },
+        {
+          name: '麻古茶坊', aliases: ['麻古茶坊', '麻古'], sourceUrl: 'https://www.macutea.com.tw/drink.php?area=3&cat=9',
+          region: '北部門市', checkedAt: menuCheckedAt,
+          priceSourceUrl: 'https://www.macutea.com.tw/upload_image/carte/menu_N.jpg?53197=',
+          priceNote: '售價依麻古官方北部菜單圖整理；瓶裝與大葉高島屋店價格不同。',
+          groups: [
+            menuGroup('原味茶', [['粉粿金萱', 'L 50／瓶 65'], ['紅萱烏龍', 'L 45／瓶 60'], ['高山金萱茶', 'L 40／瓶 55'], ['翡翠綠茶', 'L 40／瓶 55'], ['錫蘭紅茶', 'L 40／瓶 55'], ['蜜桃紅茶', 'L 45／瓶 60'], ['紅萱雙Q', 'L 55／瓶 70'], ['金萱雙Q', 'L 50／瓶 65']]),
+            menuGroup('鮮果茶飲', [['粉粿橙香紅萱', 'L 85／瓶 110'], ['橙香紅萱', 'L 75／瓶 100'], ['百香雙Q果', 'L 65／瓶 95'], ['百香綠茶', 'L 65／瓶 95'], ['百香多多', 'L 70'], ['翡翠柳橙', 'L 70／瓶 95'], ['粉粿冰萃檸檬', 'L 65'], ['冰萃檸檬', 'L 55'], ['蜂蜜檸檬', 'L 65'], ['柚香翡翠', 'L 70／瓶 95']]),
+            menuGroup('濃醇系列', [['蜜桃奶茶', 'L 65／瓶 95'], ['錫蘭奶茶', 'L 55／瓶 85'], ['波霸奶茶', 'L 55／瓶 85'], ['椰果奶茶', 'L 55／瓶 85'], ['波波奶茶', 'L 55／瓶 85'], ['綠茶凍奶茶', 'L 55／瓶 85'], ['仙草凍奶茶', 'L 55／瓶 85'], ['玫瑰奶茶', 'L 65／瓶 95'], ['阿華田', 'L 60／瓶 90']]),
+            menuGroup('果粒茶', [['香橙果粒茶', 'L 85／瓶 110'], ['柳橙果粒茶', 'L 80／瓶 105'], ['葡萄柚果粒茶', 'L 80／瓶 105'], ['葡萄柚果粒蜜茶', 'L 80／瓶 105'], ['柳橙芒果果粒茶（5–9月）', 'L 80']]),
+            menuGroup('芝芝系列', [['芝芝金萱', 'L 55'], ['芝芝錫蘭紅茶', 'L 55'], ['芝芝金萱雙Q', 'L 65'], ['芝芝蜜桃紅茶', 'L 65'], ['芝芝翡翠綠茶', 'L 60'], ['芝芝錫蘭奶茶', 'L 75'], ['芝芝阿華田', 'L 80']]),
+            menuGroup('經典與鮮奶', [['梅子冰茶', 'L 45／瓶 60'], ['梅子綠茶', 'L 55'], ['多多綠茶', 'L 55／瓶 85'], ['蕎麥綠寶石', 'L 45／瓶 60'], ['紅粿紅茶拿鐵', 'L 70／瓶 100'], ['紅茶拿鐵', 'L 70／瓶 100'], ['波霸紅茶拿鐵', 'L 70／瓶 100'], ['仙草凍紅茶拿鐵', 'L 70／瓶 100'], ['阿華田拿鐵', 'L 70／瓶 100'], ['玫瑰紅茶拿鐵', 'L 75／瓶 105']]),
+            menuGroup('季節限定', [['巨峰葡萄冰沙', 'L 85'], ['芝芝葡萄果粒（10–6月）', 'L 95'], ['葡萄果粒波波（10–6月）', 'L 95'], ['酪梨甘露（5–9月）', 'L 90'], ['楊枝甘露2.0（5–9月）', 'L 90'], ['芝芝芒果果粒（5–9月）', 'L 95'], ['芒果果粒波波（5–9月）', 'L 90'], ['番茄梅蜜', 'L 75／瓶 105'], ['番茄梅蜜波波', 'L 85／瓶 115']])
+          ]
+        },
+        {
+          name: '龜記茗品', aliases: ['龜記茗品', '龜記'], sourceUrl: 'https://guiji-group.com/drinks',
+          region: '台北、新北、宜蘭、基隆、新竹、花蓮一般門市', checkedAt: menuCheckedAt,
+          priceSourceUrl: 'https://guiji-group.com/upload_file/productMenu/productMenu_f031e6f9fca63f357c7a1cb80af67f00.jpg',
+          priceNote: '售價依龜記官方北區價目圖整理。',
+          groups: [
+            menuGroup('醇萃', [['極品紅茶', 'L 40'], ['翡翠綠茶', 'L 40'], ['青四季春', 'L 40'], ['三韻紅萱', 'L 45'], ['三十三茶王', 'L 45'], ['碎銀普洱', 'L 45'], ['花沫烏龍', 'L 45']]),
+            menuGroup('蜜蜂工坊', [['蜂蜜綠茶', 'L 55'], ['蜂蜜四季春', 'L 55'], ['蜂蜜花沫烏龍', 'L 60'], ['蜂蜜雷夢', 'L 65'], ['雷夢蘆薈蜜', 'L 75']]),
+            menuGroup('果茶', [['百香紅茶', 'L 55'], ['百香綠茶', 'L 55'], ['翡翠雷夢', 'L 60'], ['柳丁翡翠', 'L 60'], ['蘋果紅萱', 'L 60'], ['紫葡三韻紅', 'L 60'], ['蜜桃烏龍', 'L 70'], ['紅柚翡翠', 'L 75'], ['紫葡蘆薈春', 'L 75'], ['紅柚紫葡凍飲', 'L 80']]),
+            menuGroup('鄉韻', [['豆漿紅茶', 'L 45'], ['冬瓜茶王', 'L 55'], ['阿源楊桃紅', 'L 55'], ['阿源楊桃綠', 'L 55'], ['冬瓜雷夢', 'L 60'], ['楊桃雷夢', 'L 60'], ['甘蔗四季春', 'L 65'], ['梅好翡翠綠', 'L 60'], ['梅好百香綠', 'L 70'], ['梅好三韻紅凍飲', 'L 75']]),
+            menuGroup('鮮乳坊', [['極品鮮乳茶', 'L 70'], ['翡翠鮮乳茶', 'L 70'], ['龜記濃乳茶', 'L 70'], ['冬瓜鮮乳', 'L 70'], ['茶王鮮乳茶', 'L 75'], ['巧克鮮乳', 'L 75'], ['碎銀普洱鮮乳', 'L 75']]),
+            menuGroup('香醇奶茶', [['極品奶茶', 'L 55'], ['翡翠奶綠', 'L 55'], ['茶王奶茶', 'L 60'], ['碎銀普洱奶茶', 'L 60'], ['珍珠奶茶', 'L 65'], ['蜂蜜奶茶', 'L 65']])
+          ]
+        },
+        {
+          name: '一沐日', aliases: ['一沐日'], sourceUrl: 'https://www.imuz.com.tw/',
+          region: '北部一般門市', checkedAt: menuCheckedAt,
+          priceSourceUrl: 'https://baliman.tw/blog/post/yimuri-menu',
+          priceNote: '品項依官網，售價依 2026 年 5 月公開價目整理；全品項單一杯量。',
+          groups: [
+            menuGroup('茶人', [['輕香烏龍綠', '45'], ['糯米香茶', '45'], ['島韻紅茶', '40'], ['炭培烏龍', '40'], ['油切蕎麥茶', '40'], ['手採高山青', '40']]),
+            menuGroup('講究', [['牡丹高山青', '60'], ['牡丹蕎麥茶', '60'], ['粉粿牡丹檸檬', '70'], ['酸梅湯烏龍綠', '65'], ['輕檸烏龍綠', '65'], ['糯香檸檬茶', '65'], ['粉粿桂花檸檬', '70'], ['粉粿黑糖檸檬', '70'], ['荔枝烏龍', '60'], ['荔枝蘆薈', '65'], ['檸檬紅茶', '60'], ['檸檬高山青', '60'], ['桂花蕎麥茶', '60']]),
+            menuGroup('香醇奶茶', [['烏龍綠奶茶', '60'], ['糯香奶茶', '60'], ['粉粿黑糖奶茶', '70'], ['黃金蕎麥奶茶', '55'], ['逮丸奶茶', '75'], ['極黑芝麻奶茶', '70'], ['島韻紅奶茶', '55'], ['烏龍奶茶', '55'], ['高山青奶茶', '55'], ['嫩仙草奶茶', '65']]),
+            menuGroup('芝士奶蓋', [['奶蓋烏龍綠', '75'], ['奶蓋糯香茶', '75'], ['奶蓋島韻紅', '70'], ['奶蓋烏龍茶', '70'], ['奶蓋蕎麥茶', '70'], ['奶蓋高山青', '70']]),
+            menuGroup('鮮奶茶', [['烏龍綠鮮奶茶', '80'], ['糯香鮮奶茶', '80'], ['蕎麥鮮奶茶', '75'], ['烏龍鮮奶茶', '75'], ['島韻紅鮮奶茶', '75'], ['極黑芝麻鮮奶茶', '85'], ['粉粿黑糖鮮奶茶', '85'], ['高山青鮮奶茶', '75']]),
+            menuGroup('冬瓜茶', [['冬瓜紅茶', '50'], ['冬瓜青茶', '50'], ['冬瓜檸檬', '55'], ['冬瓜仙草蜜', '55'], ['冬瓜蕎麥茶', '50'], ['冬瓜烏龍茶', '50']])
+          ]
+        },
+        {
+          name: '萬波島嶼紅茶', aliases: ['萬波島嶼紅茶', '萬波'], sourceUrl: 'https://www.wanpotea.com/drink',
+          region: '台灣門市', checkedAt: menuCheckedAt,
+          priceSourceUrl: 'https://dailydietitian.com.tw/%E8%90%AC%E6%B3%A2%E7%86%B1%E9%87%8F%E5%9C%96%E9%91%91-%E7%B3%96%E9%87%8F-%E5%83%B9%E6%A0%BC-%E7%87%9F%E9%A4%8A%E5%B8%AB%E5%BB%BA%E8%AD%B0/',
+          priceNote: '品項依官網，售價依 2026 年 6 月公開價目整理。',
+          groups: [
+            menuGroup('品茗精選', [['織麥茶', 'M 30／L 35'], ['鐵觀音', 'M 30／L 35'], ['金萱青茶', 'M 35／L 40'], ['麗雅烏龍', 'M 30／L 35'], ['宣橋綠茶', 'M 30／L 35'], ['島嶼紅茶', 'M 30／L 35']]),
+            menuGroup('手路調飲', [['蜂蜜麗雅', 'M 45／L 55'], ['蜂蜜金萱', 'M 45／L 55'], ['金牌愛玉檸', 'M 50／L 60'], ['杏花雨露', 'M 50／L 60'], ['金萱珍波粉', 'M 50／L 55'], ['珍珠酸梅冰', 'M 50／L 60'], ['愛玉酸梅冰', 'M 50／L 60'], ['杏仁酸梅冰', 'M 50／L 60'], ['永良冬瓜露', 'M 30／L 40']]),
+            menuGroup('果香與無咖啡因', [['冬瓜金萱青', 'M 40／L 50'], ['冬瓜檸檬', 'M 45／L 55'], ['白柚烏龍', 'M 65／L 75'], ['白柚翡翠', 'M 65／L 75'], ['白柚金萱', 'M 65／L 75'], ['紅蘋島嶼', 'M 55／L 65'], ['埔里甘蔗青', 'M 55／L 65'], ['翠涎香檸綠', 'M 50／L 60'], ['大青梅果綠', 'M 50／L 60'], ['蔗香煙燻烏梅', 'M 50／L 60'], ['甘蔗檸檬', 'M 55／L 65']]),
+            menuGroup('奶茶', [['萬波奶茶', 'M 45／L 55'], ['芋圓奶綠', 'M 55／L 65'], ['鐵觀音奶茶', 'M 45／L 55'], ['波霸奶茶', 'M 55／L 65'], ['宣橋奶綠', 'M 45／L 55']]),
+            menuGroup('那堤與麥仔', [['蘭葉那堤', 'M 60／L 70'], ['鐵觀音那堤', 'M 60／L 70'], ['紅豆粉粿鮮奶', 'M 65／L 80'], ['燕麥蘭葉那堤', 'M 75／L 85'], ['麥仔冬瓜露', 'M 45／L 55'], ['麥仔奶茶', 'M 45／L 55'], ['麥仔那堤', 'M 55／L 65'], ['麥仔蜜檸檬', 'M 55／L 65']]),
+            menuGroup('蜜柑與鳳梨', [['蜜柑烏龍', 'M 55／L 65'], ['蜜柑翡翠', 'M 55／L 65'], ['蜜柑金萱', 'M 55／L 65'], ['金鑽杏仁露', 'M 65／L 75'], ['金鑽鳳梨紅', 'M 55／L 65'], ['金鑽鳳梨綠', 'M 55／L 65'], ['金鑽鳳梨青', 'M 55／L 65'], ['金鑽鳳梨烏', 'M 55／L 65'], ['金鑽鳳梨麗雅', 'M 55／L 65']]),
+            menuGroup('芋頭薑汁仙草', [['芋泥奶茶', 'L 75'], ['米麻糬芋泥奶茶', 'L 85'], ['波霸芋泥奶茶', 'L 85'], ['芋泥鮮奶', 'L 80'], ['波霸芋泥鮮奶', 'L 90'], ['黑糖薑茶', 'M 45'], ['薑汁紅茶', 'M 50'], ['薑汁撞奶', 'M 50'], ['綜合燒仙草', 'M 50／L 65'], ['仙草甘茶', 'M 25／L 35'], ['超級仙草甘', 'M 35／L 45'], ['嫩仙草奶茶', 'M 55／L 65']]),
+            menuGroup('梨仔與綠豆蒜', [['梨仔紅', 'M 55／L 65'], ['梨仔青', 'M 55／L 65'], ['萬事大桔', 'M 55／L 65'], ['桂圓綠豆蒜', 'M 55／L 65'], ['雙珍桂圓綠豆蒜', 'M 55／L 65']]),
+            menuGroup('奶蓋', [['奶蓋紅茶', 'L 60'], ['奶蓋綠茶', 'L 60'], ['奶蓋麗雅', 'L 60'], ['奶蓋青茶', 'L 60'], ['奶蓋鐵觀音', 'L 60'], ['奶蓋織麥茶', 'L 60'], ['奶蓋蜜柑烏龍', 'L 60'], ['奶蓋蜜柑翡翠', 'L 60'], ['奶蓋蜜柑金萱', 'L 60']]),
+            menuGroup('季節限定', [['芒果冰沙', 'M 80／L 90'], ['楊枝甘露', 'M 80／L 90'], ['草莓歐蕾', 'L 85'], ['米麻糬草莓歐蕾', 'L 95'], ['奶蓋草莓綠茶', 'L 90'], ['草莓綠茶', 'L 75']])
+          ]
+        },
+        {
+          name: '再睡5分鐘', aliases: ['再睡5分鐘', '再睡五分鐘'], sourceUrl: 'https://www.napteazzz.com/recommendations',
+          region: '一般街邊門市；店型供應可能不同', checkedAt: menuCheckedAt,
+          priceSourceUrl: 'https://findrink.tw/brands/napteazzz',
+          priceNote: '品項依官方 2026 菜單，售價依一般街邊店公開價目整理；百貨店另計。',
+          groups: [
+            menuGroup('棉被厚奶蓋', [['棉被日安紅', 'L 75'], ['棉被午茉綠', 'L 75'], ['棉被四季金萱', 'L 75'], ['棉被深焙烏龍', 'L 75'], ['棉被熟八蕎麥', 'L 80']]),
+            menuGroup('5分鐘特調', [['檸檬梅梅', 'L 25'], ['午茉多多', 'L 55'], ['金萱多多', 'L 55'], ['桃氣多多', 'L 75'], ['富士令果多多', 'L 80'], ['小咖喝飽飽', 'L 80'], ['葡萄沙沙', 'L 85']]),
+            menuGroup('簡單喝原茶', [['日安紅', '冰L 40／熱M 40'], ['午茉綠', '冰L 40／熱M 40'], ['四季金萱', '冰L 40／熱M 40'], ['金萱午茉', '冰L 40／熱M 40'], ['深焙烏龍', '冰L 40／熱M 40'], ['熟八蕎麥', '冰L 45／熱M 40']]),
+            menuGroup('清爽喝果茶', [['檸檬日安', 'L 60'], ['檸檬午茉', 'L 60'], ['檸檬金萱', 'L 60'], ['四季桃氣', 'L 70'], ['富士令果', 'L 75'], ['果然桃氣', 'L 80'], ['柚紅柚綠', 'L 75']]),
+            menuGroup('日日喝奶茶', [['午茉綠奶茶（濃茶）', '冰L／熱M 55'], ['午茉綠奶茶（厚奶）', '冰L／熱M 65'], ['日安紅奶茶（濃茶）', '冰L／熱M 55'], ['日安紅奶茶（厚奶）', '冰L／熱M 65'], ['四季金萱奶茶（濃茶）', '冰L／熱M 55'], ['四季金萱奶茶（厚奶）', '冰L／熱M 65'], ['深焙烏龍奶茶（濃茶）', '冰L／熱M 55'], ['深焙烏龍奶茶（厚奶）', '冰L／熱M 65'], ['熟八蕎麥奶茶（濃茶）', '冰L 60／熱M 55'], ['熟八蕎麥奶茶（厚奶）', '冰L／熱M 70']]),
+            menuGroup('躺著喝歐蕾', [['午茉綠歐蕾', '冰L／熱M 75'], ['午茉綠燕麥歐蕾', '冰L／熱M 85'], ['日安紅歐蕾', '冰L／熱M 75'], ['日安紅燕麥歐蕾', '冰L／熱M 85'], ['四季金萱歐蕾', '冰L／熱M 75'], ['四季金萱燕麥歐蕾', '冰L／熱M 85'], ['深焙烏龍歐蕾', '冰L／熱M 75'], ['深焙烏龍燕麥歐蕾', '冰L／熱M 85'], ['熟八蕎麥歐蕾', '冰L／熱M 80'], ['熟八蕎麥燕麥歐蕾', '冰L／熱M 90']]),
+            menuGroup('療癒喝厚奶', [['黑糖珍珠厚奶', '冰L／熱M 75'], ['黑糖珍珠厚奶（鮮奶）', '冰L／熱M 85'], ['嫩仙草厚奶', '冰L／熱M 85'], ['嫩仙草厚奶（鮮奶）', '冰L／熱M 95'], ['黑糖珍珠啵啵厚奶', '冰L／熱M 95'], ['黑糖珍珠啵啵厚奶（鮮奶）', '冰L／熱M 105'], ['香芋啵啵厚奶', '冰L／熱M 95'], ['香芋啵啵厚奶（鮮奶）', '冰L／熱M 105']])
+          ]
+        },
+        {
+          name: '先喝道', aliases: ['先喝道'], sourceUrl: 'https://www.taotaotea.com.tw/pages/menu',
+          region: '台灣門市', checkedAt: menuCheckedAt,
+          priceSourceUrl: 'https://roo.cash/blog/taotaotea-recommendation-article/',
+          priceNote: '品項依官網，售價依 2026 一般門市公開價目整理；百貨櫃位可能不同。',
+          groups: [
+            menuGroup('莊園好茶', [['錫蘭高地莊園紅茶', 'L 35'], ['花開茉綠茶', 'L 35'], ['四季春茶王', 'L 35'], ['英式蜜桃風味茶', 'L 35'], ['皇家伯爵茶', 'L 35'], ['英式玫瑰特調茶', 'L 40']]),
+            menuGroup('招牌水果茶', [['英式水果茶', 'L 65'], ['蜜桃風味水果茶', 'L 65'], ['皇家伯爵水果茶', 'L 65'], ['英式玫瑰水果茶', 'L 65']]),
+            menuGroup('特調', [['玫瑰水', 'L 35'], ['檸夏冰茶', 'L 55'], ['翡翠檸檬', 'L 55'], ['蜂蜜花開茉綠茶', 'L 50'], ['蜂蜜四季春茶', 'L 55']]),
+            menuGroup('朵朵海鹽奶蓋', [['朵朵奶蓋伯爵茶', 'L 60'], ['朵朵奶蓋蜜桃風味茶', 'L 60'], ['朵朵奶蓋四季春', 'L 60']]),
+            menuGroup('草本與穀麥', [['還我青春六味養生茶', 'L 65'], ['靜心養神好夢茶', 'L 65'], ['紅顏珍珠花旗蔘茶', 'L 70'], ['輕焙穀麥茶', 'L 40'], ['輕焙穀麥奶茶', 'L 55'], ['輕焙穀麥拿鐵', 'L 65'], ['朵朵奶蓋穀麥茶', 'L 65']]),
+            menuGroup('糯烏龍', [['糯烏龍', 'L 35'], ['冬瓜糯烏龍', 'L 39'], ['糯烏龍拿鐵', 'L 60'], ['冬瓜糯烏龍拿鐵', 'L 65']]),
+            menuGroup('精選奶茶', [['花開茉綠奶茶', 'L 55'], ['錫蘭高地珍珠奶茶', 'L 65'], ['英式玫瑰奶茶', 'L 60'], ['錫蘭高地莊園奶茶', 'L 55'], ['蜜桃風味奶茶', 'L 50'], ['皇家伯爵奶茶', 'L 50'], ['巧克力伯爵奶茶', 'L 60']]),
+            menuGroup('英式鮮奶茶', [['英式玫瑰拿鐵', 'L 65'], ['蜜桃風味拿鐵', 'L 65'], ['錫蘭莊園紅茶拿鐵', 'L 60'], ['花開茉綠茶拿鐵', 'L 60'], ['皇家伯爵拿鐵', 'L 60'], ['巧克力伯爵拿鐵', 'L 70']]),
+            menuGroup('硬頸乳茶', [['硬頸奶茶（無咖啡因）', 'L 65'], ['硬頸乳茶（無咖啡因）', 'L 75']])
+          ]
+        },
+        {
+          name: '八曜和茶', aliases: ['八曜和茶', '八曜'], sourceUrl: 'https://8yotea.com/menu/',
+          region: '台灣門市', checkedAt: menuCheckedAt,
+          priceSourceUrl: 'https://sipspot.wisplu.com.tw/brands/%E5%85%AB%E6%9B%9C%E5%92%8C%E8%8C%B6/menu/',
+          priceNote: '品項依官方電子菜單，售價依 2026 公開價目整理。',
+          groups: [
+            menuGroup('厚奶茶', [['冬戀奶茶', 'L 66'], ['匠心奶茶', 'L 60'], ['覺醒奶茶', 'L 55'], ['雪匠奶茶', 'L 69'], ['83蜂潮奶茶', 'L 69'], ['308炙燒濃乳', 'L 66'], ['京彩舞伎奶茶', 'L 66'], ['深煎黑龍奶茶', 'L 55']]),
+            menuGroup('和風茶', [['和風308', 'L 50'], ['83蜂凝露', 'L 55'], ['八曜和茶', 'L 35']]),
+            menuGroup('纖果爽', [['寧夏307', 'L 60'], ['83蜂檸爽爽', 'L 65'], ['柚香覺醒307', 'L 67'], ['京楓檸檬紅茶', 'L 50'], ['八曜黑檸檬茶', 'L 55'], ['柚香覺醒紅茶', 'L 65'], ['八曜雙C纖檸露', 'L 50'], ['明日清爽檸檬茶', 'L 55']]),
+            menuGroup('自然茶與樂多', [['極上307', 'L 37'], ['樂多307', 'L 70'], ['樂多308', 'L 70'], ['八曜樂多', 'L 60'], ['明日樂多', 'L 60'], ['茉語樂多', 'L 70']]),
+            menuGroup('鮮乳定製', [['牧場307', 'L 65／乳茶 75'], ['牧場308', 'L 65／乳茶 75'], ['八曜和風', 'L 55／乳茶 65'], ['牧場覺醒', 'L 55／乳茶 65'], ['牧場黑烏龍', 'L 60／乳茶 70'], ['茉妃牧場505', 'L 65／乳茶 75'], ['贅澤香焙歐蕾', 'L 66／乳茶 76']]),
+            menuGroup('益生菌與白奶茶', [['激酵ルル蜂凝菌乳茶', 'L 79'], ['順解ルル柚香菌乳茶', 'L 79'], ['307極韻白奶茶', 'L 89'], ['308極韻白奶茶', 'L 79'], ['406極韻白奶茶', 'L 89'], ['8YO極韻白奶茶', 'L 79']]),
+            menuGroup('和風日式複方茶', [['和風307', 'L 37'], ['究極308', 'L 42'], ['83蜂見茶', 'L 60'], ['朝日覺醒紅茶', 'L 40']])
+          ]
+        },
+        {
+          name: 'COMEBUY', aliases: ['COMEBUY'], sourceUrl: 'https://www.comebuy2002.com.tw/products/',
+          region: '台灣門市', checkedAt: menuCheckedAt,
+          priceSourceUrl: 'https://dailydietitian.com.tw/come-buy-%E8%8F%9C%E5%96%AE-%E6%96%B0%E5%93%81-%E5%84%AA%E6%83%A0/',
+          priceNote: '品項依官網，售價依 2026 年 7 月一般門市公開價目整理。',
+          groups: [
+            menuGroup('原葉鮮萃', [['碧螺春綠', 'L 40'], ['四季春', '原葉 40／奶茶 60／拿鐵 75'], ['金萱烏龍', '原葉 40／拿鐵 75'], ['文山包種', '原葉 50／拿鐵 85'], ['觀音烏綠', '原葉 40／奶茶 60／拿鐵 75'], ['烏瓦紅茶', '原葉 40／拿鐵 70'], ['小葉紅茶', '原葉 50／奶茶 70／拿鐵 85'], ['茉莉綠茶拿鐵', 'L 70'], ['茉莉烏龍', '原葉 40／奶茶 60／拿鐵 75'], ['嗨神', '原葉 45／奶茶 65／拿鐵 80'], ['玩火', '原葉 45／奶茶 65／拿鐵 80'], ['桂花四季春', 'L 50'], ['白桃蜜烏龍', 'L 55'], ['鮮萃大麥紅茶', '原葉 40／奶茶 60／拿鐵 75'], ['玫瑰普洱', '原葉 45／奶茶 65／拿鐵 80']]),
+            menuGroup('奶茶特調', [['雙Q奶茶1號', 'M 60／L 65'], ['雙Q奶茶2號', 'M 60／L 65'], ['招牌奶茶', 'M 50／L 55'], ['黃金奶綠', 'M 50／L 55'], ['珍珠奶茶', 'M 55／L 60'], ['珍珠奶綠', 'M 55／L 60'], ['沖繩黑糖奶茶', 'L 65'], ['沖繩黑糖奶綠', 'L 65'], ['粉條奶茶', 'M 60／L 65'], ['桂花奶綠', 'M 60／L 65'], ['仙草凍奶茶', 'L 70'], ['港式厚奶', 'L 70'], ['經典可可', 'M 55／L 60'], ['可可拿鐵', 'M 70／L 75'], ['宇治抹茶', 'L 65'], ['抹茶拿鐵', 'M 65／L 85']]),
+            menuGroup('鮮調果茶', [['錫蘭紅茶', 'M 30／L 35'], ['茉莉綠茶', 'M 30／L 35'], ['蜂蜜紅茶', 'M 45／L 50'], ['蜂蜜綠茶', 'M 45／L 50'], ['玉荷冰綠', 'L 55'], ['話梅冰綠', 'L 55'], ['話梅檸檬綠', 'L 65'], ['檸檬紅茶', 'M 55／L 60'], ['檸檬綠茶', 'M 55／L 60'], ['養樂多綠茶', 'M 55／L 60'], ['百香搖果樂', 'M 60／L 65'], ['蘋果冰茶', 'M 60／L 65'], ['鳳梨冰茶', 'L 65'], ['芭樂檸檬綠', 'L 70']]),
+            menuGroup('無咖啡因', [['輕麥決明茶', 'L 50'], ['輕麥冬瓜凍飲', 'L 50'], ['輕麥決明奶茶', 'L 60'], ['輕麥冬瓜檸檬', 'L 60'], ['輕麥決明拿鐵', 'L 75'], ['輕麥冬瓜鮮奶', 'L 80'], ['超桔霸氣飲', 'L 50'], ['蜂蜜檸檬', 'L 60'], ['金桔檸檬', 'M 55／L 60'], ['檸檬愛玉風味飲', 'L 60'], ['荔枝玉露', 'M 60／L 65'], ['纖美小紫蘇', 'L 70'], ['芭樂多多', 'M 65／L 85']]),
+            menuGroup('季節限定', [['金芒果優酪（4–10月）', 'L 70'], ['葡萄柚綠茶（4–10月）', 'L 65'], ['青檸香柚QQ（4–10月）', 'L 75'], ['桂圓紅茶（11–3月）', 'L 55'], ['暖薑茶（11–3月）', 'L 55'], ['暖薑奶茶（11–3月）', 'L 65'], ['紫米奶茶（11–3月）', 'M 70／L 75'], ['紫米可可（11–3月）', 'M 75／L 80'], ['黑糖薑汁可可（11–3月）', 'L 70']])
+          ]
+        },
+        {
+          name: 'Mr.WISH', aliases: ['Mr.WISH', 'Mr WISH'], sourceUrl: 'https://www.mr-wish.com/load_page/get_menu_page/1/all/',
+          region: '北部一般門市', checkedAt: menuCheckedAt,
+          priceSourceUrl: 'https://baliman.tw/blog/post/mrwish-menu',
+          priceNote: '品項依官方北部菜單，售價依 2026 北部公開價目整理；季節品項依供應為準。',
+          groups: [
+            menuGroup('得獎好茶', [['黃枝香烏龍', 'L 45／瓶 90'], ['黃枝香蜜烏龍', 'L 65／瓶 120'], ['粽夏一號（期間限定）', 'L 65'], ['粽夏奶烏（期間限定）', 'L 75']]),
+            menuGroup('夏遇愛文', [['芒果奶露', 'M 75／L 95'], ['楊枝甘露', 'M 80／L 95'], ['芒果厚奶', 'M 85／L 110'], ['愛文芒果冰沙', 'M 90／L 115']]),
+            menuGroup('五窨綠茶', [['五窨初茉綠茶', 'L 45／瓶 90'], ['五窨初茉奶綠', 'L 65／瓶 120'], ['五窨初茉鮮奶綠', 'L 70／瓶 130'], ['五窨粉粿奶綠', 'L 69'], ['五窨冰萃柳橙綠', 'L 85'], ['五窨雪頂粉粿', 'L 89']]),
+            menuGroup('鮮果茶', [['光果茶', 'L 65'], ['百香綠茶', 'M 55／L 60／瓶 110'], ['柳橙綠茶', 'M 60／L 65／瓶 120'], ['蜂蜜檸檬', 'M 55／L 65／瓶 110'], ['紅心芭樂梅', 'L 65／瓶 120'], ['白蔗青', 'M 60／L 70／瓶 120']]),
+            menuGroup('蕎麥與冬瓜', [['黃金蕎麥', 'L 40／瓶 80'], ['蕎麥青茶', 'L 40／瓶 80'], ['蕎麥鮮奶', 'L 65／瓶 120'], ['慢熬冬瓜露', 'L 30／瓶 60'], ['冬瓜烏龍', 'L 40／瓶 80'], ['冬瓜檸檬', 'L 55']]),
+            menuGroup('沁涼冰沙', [['草莓雪頂（季節限定）', 'L 95'], ['草莓厚奶（季節限定）', 'M 75／L 95']]),
+            menuGroup('嚴選茶', [['高山青茶', 'L 35／瓶 70'], ['茉香綠茶', 'L 35／瓶 70'], ['熟成紅茶', 'L 35／瓶 70'], ['小焙烏龍', 'L 35／瓶 70'], ['香蘋紅茶', 'L 40／瓶 80'], ['蜜桃紅茶', 'L 40／瓶 80']]),
+            menuGroup('熬醬鮮果', [['荔枝紅茶', 'L 45／瓶 90'], ['荔枝小焙烏龍', 'L 55／瓶 110'], ['脆梅青', 'L 55／瓶 110'], ['葡萄果茶', 'M 45／L 55／瓶 110'], ['蜜桃果粒茶', 'M 45／L 55／瓶 110'], ['芒果果粒茶', 'M 60／L 70／瓶 140'], ['葡萄果粒啵啵', 'L 75／瓶 130'], ['荔枝香檸啵啵', 'L 75／瓶 130']]),
+            menuGroup('鮮乳與醇奶', [['紅茶鮮奶', 'L 60／瓶 110'], ['小焙烏龍鮮奶茶', 'L 65／瓶 120'], ['波霸珍珠鮮奶茶', 'L 70／瓶 130'], ['布丁鮮奶茶', 'L 70／瓶 130'], ['極選奶茶', 'L 55／瓶 100'], ['波霸珍珠奶茶', 'L 65／瓶 120'], ['手煮泰式奶茶', 'M 55／L 65']])
+          ]
+        },
+        {
+          name: '鮮茶道', aliases: ['鮮茶道', 'Presotea'], sourceUrl: 'https://presotea.com/online-menu',
+          region: '宜花東、雙北、桃竹苗一般門市', checkedAt: menuCheckedAt,
+          priceSourceUrl: 'https://baliman.tw/blog/post/presotea-menu',
+          priceNote: '品項依官方線上菜單，售價依 2026 一般門市公開價目整理；部分地區可能差 5–10 元。',
+          groups: [
+            menuGroup('鮮茶無敵', [['頂級茉莉綠茶', 'L 25／XL 45'], ['錫蘭紅茶', 'L 25／XL 45'], ['凍頂烏龍茶', 'L 25／XL 45'], ['阿里山冰茶', 'L 30／XL 50'], ['文山清茶', 'L 30／XL 50'], ['烏龍綠茶', 'L 30／XL 50'], ['伯爵紅茶', 'L 30／XL 50'], ['濃香烏龍', 'L 30／XL 50'], ['茶花綠茶', 'L 30／XL 50'], ['日式玄米茶', 'L 30／XL 50']]),
+            menuGroup('特等茶', [['阿里山里佳甘露', 'L 40'], ['日月潭紅玉紅茶', 'L 40'], ['玉露煎茶', 'L 35']]),
+            menuGroup('奶茶繽紛樂', [['錫蘭奶茶', 'L 35'], ['茉香奶茶', 'L 35'], ['招牌奶茶', 'L 40'], ['伯爵奶茶', 'L 40'], ['珍珠奶茶', 'L 45／XL 80'], ['熊貓珍珠奶茶', 'L 45／XL 80'], ['沖繩黑糖奶茶', 'L 45／XL 80'], ['仙草凍奶茶', 'L 45／XL 80'], ['紅豆玄米奶茶', 'L 50'], ['蜜香烏龍小珍奶', 'L 50／XL 85'], ['布丁奶茶', 'L 50']]),
+            menuGroup('茶拿鐵', [['聖塔路黑可可', 'L 45／XL 80'], ['抹茶拿鐵', 'L 50／XL 85'], ['紅茶拿鐵', 'L 55／XL 90'], ['綠茶拿鐵', 'L 55／XL 90'], ['抹茶紅豆白玉', 'L 55／XL 90'], ['伯爵拿鐵', 'L 60／XL 95'], ['焙茶珍珠拿鐵', 'L 60／XL 95'], ['日月潭紅玉拿鐵', 'L 60'], ['紅豆玄米拿鐵', 'L 60']]),
+            menuGroup('果然纖滋味', [['藍莓果茶', 'L 40'], ['夏夜晚風', 'L 40'], ['墾丁冰茶', 'L 40／XL 75'], ['梅果綠茶', 'L 40'], ['蜂蜜蘆薈', 'L 40／XL 75'], ['檸檬CC', 'L 40／XL 75'], ['鮮檸檬紅茶', 'L 45'], ['鮮檸檬綠茶', 'L 45'], ['鳳梨清茶', 'L 45'], ['檸檬梅子', 'L 45／XL 80'], ['鮮百香紅茶', 'L 50'], ['鮮百香綠茶', 'L 50'], ['鮮百香檸檬', 'L 50／XL 85'], ['鮮桔檸檬', 'L 50／XL 85'], ['蜂蜜檸檬', 'L 50／XL 85'], ['百香鳳梨', 'L 55'], ['鮮果雙Q紅茶', 'L 55／XL 90'], ['鮮果雙Q綠茶', 'L 55／XL 90'], ['蘋果百香多多', 'L 65／XL 95']]),
+            menuGroup('冬瓜鮮爽塊', [['水晶冬瓜茶', 'L 30／XL 65'], ['冬瓜拿鐵', 'L 50／XL 85'], ['冬瓜檸檬', 'L 50／XL 85']]),
+            menuGroup('雨林聯盟認證茶', [['四季春', 'L 35'], ['蜜香紅茶', 'L 35'], ['臺灣綠茶', 'L 35'], ['四季烏龍', 'L 35'], ['四季春南波萬', 'L 45'], ['蜜香果茶', 'L 45'], ['寒天四季奶青', 'L 60'], ['福祿FRUIT水果茶', 'L 65']])
+          ]
+        }
       ];
       const legacySeedNames = new Set([
         '五十嵐', '可不可熟成紅茶', '麻古茶坊', '龜記茗品', '得正',
@@ -351,8 +815,162 @@
       manager.open = stores.length <= 5;
       let chosen = '';
       let timer = null;
+      let chosenMenuEntry = null;
 
       const activeStores = () => stores.filter(store => store.active);
+      const normalizeBrand = value => value.toLocaleLowerCase().replace(/[\s·・._\-—–()（）\[\]【】]/g, '');
+      const findMenuEntry = storeName => {
+        const normalizedStore = normalizeBrand(storeName);
+        return menuCatalog.find(entry => entry.aliases.some(alias => normalizedStore.includes(normalizeBrand(alias)))) || null;
+      };
+      const getMenuItemCount = entry => new Set(
+        entry.groups.flatMap(group => group.items.map(item => normalizeBrand(item.name)))
+      ).size;
+
+      function showView(viewName) {
+        tabs.forEach(tab => {
+          const selected = tab.dataset.view === viewName;
+          tab.classList.toggle('is-active', selected);
+          tab.setAttribute('aria-selected', String(selected));
+        });
+        viewPanels.forEach(panel => {
+          panel.hidden = panel.dataset.viewPanel !== viewName;
+        });
+        count.hidden = viewName === 'menu';
+      }
+
+      function renderMenuCatalog(query = '') {
+        const normalizedQuery = normalizeBrand(query);
+        const entries = normalizedQuery
+          ? menuCatalog.filter(entry => {
+              const searchable = [
+                entry.name,
+                ...entry.aliases,
+                ...entry.groups.flatMap(group => group.items.map(item => item.name))
+              ];
+              return searchable.some(value => normalizeBrand(value).includes(normalizedQuery));
+            })
+          : menuCatalog;
+        menuDetail.hidden = true;
+        menuList.hidden = false;
+        menuList.replaceChildren();
+        if (!entries.length) {
+          const empty = document.createElement('p');
+          empty.className = 'ds-menu-empty';
+          empty.textContent = '菜單庫裡還沒有這個品牌。';
+          menuList.append(empty);
+          return;
+        }
+        entries.forEach(entry => {
+          const row = document.createElement('button');
+          row.className = 'ds-menu-item';
+          row.type = 'button';
+          row.setAttribute('aria-label', `查看${entry.name}文字菜單`);
+          const text = document.createElement('span');
+          const name = document.createElement('span');
+          name.className = 'ds-menu-name';
+          name.textContent = entry.name;
+          const summary = document.createElement('span');
+          summary.className = 'ds-menu-summary';
+          summary.textContent = `${getMenuItemCount(entry)} 項整理・確認 ${entry.checkedAt}`;
+          const arrow = document.createElement('i');
+          arrow.className = 'ds-menu-arrow';
+          arrow.dataset.lucide = 'chevron-right';
+          arrow.setAttribute('aria-hidden', 'true');
+          text.append(name, summary);
+          row.append(text, arrow);
+          row.addEventListener('click', () => showMenuDetail(entry));
+          menuList.append(row);
+        });
+        if (window.lucide) window.lucide.createIcons({ attrs: { width: 16, height: 16 } });
+      }
+
+      function showMenuDetail(entry) {
+        menuList.hidden = true;
+        menuDetail.hidden = false;
+        menuDetail.replaceChildren();
+
+        const head = document.createElement('div');
+        head.className = 'ds-menu-detail-head';
+        const titleBlock = document.createElement('div');
+        const title = document.createElement('h3');
+        title.className = 'ds-menu-detail-title';
+        title.textContent = entry.name;
+        const meta = document.createElement('div');
+        meta.className = 'ds-menu-meta';
+        const region = document.createElement('span');
+        region.innerHTML = '<i data-lucide="map-pin" aria-hidden="true"></i>';
+        region.append(document.createTextNode(entry.region));
+        const checked = document.createElement('span');
+        checked.innerHTML = '<i data-lucide="calendar-check" aria-hidden="true"></i>';
+        checked.append(document.createTextNode(`最後確認 ${entry.checkedAt}`));
+        meta.append(region, checked);
+        titleBlock.append(title, meta);
+
+        const actions = document.createElement('div');
+        actions.className = 'ds-menu-detail-actions';
+        const back = document.createElement('button');
+        back.className = 'ds-secondary';
+        back.type = 'button';
+        back.innerHTML = '<i data-lucide="arrow-left" aria-hidden="true"></i>返回品牌列表';
+        back.addEventListener('click', () => renderMenuCatalog(menuSearch.value));
+        const source = document.createElement('a');
+        source.className = 'ds-menu-link';
+        source.href = entry.sourceUrl;
+        source.target = '_blank';
+        source.rel = 'noopener noreferrer';
+        source.innerHTML = '查看官方來源<i data-lucide="external-link" aria-hidden="true"></i>';
+        actions.append(back, source);
+        if (entry.priceSourceUrl && entry.priceSourceUrl !== entry.sourceUrl) {
+          const priceSource = document.createElement('a');
+          priceSource.className = 'ds-menu-link';
+          priceSource.href = entry.priceSourceUrl;
+          priceSource.target = '_blank';
+          priceSource.rel = 'noopener noreferrer';
+          priceSource.innerHTML = '查看價格來源<i data-lucide="external-link" aria-hidden="true"></i>';
+          actions.append(priceSource);
+        }
+        head.append(titleBlock, actions);
+
+        const note = document.createElement('p');
+        note.className = 'ds-menu-note';
+        note.textContent = entry.priceNote;
+        menuDetail.append(head, note);
+
+        entry.groups.forEach(group => {
+          const section = document.createElement('section');
+          section.className = 'ds-menu-group';
+          const heading = document.createElement('h3');
+          heading.textContent = group.name;
+          const table = document.createElement('table');
+          table.className = 'ds-menu-table';
+          const thead = document.createElement('thead');
+          const headRow = document.createElement('tr');
+          const drinkHead = document.createElement('th');
+          drinkHead.scope = 'col';
+          drinkHead.textContent = '飲品';
+          const priceHead = document.createElement('th');
+          priceHead.scope = 'col';
+          priceHead.textContent = '價格';
+          headRow.append(drinkHead, priceHead);
+          thead.append(headRow);
+          const body = document.createElement('tbody');
+          group.items.forEach(item => {
+            const row = document.createElement('tr');
+            const drink = document.createElement('td');
+            drink.textContent = item.name;
+            const price = document.createElement('td');
+            price.textContent = item.price || '依門市';
+            if (!item.price) price.className = 'ds-price-pending';
+            row.append(drink, price);
+            body.append(row);
+          });
+          table.append(thead, body);
+          section.append(heading, table);
+          menuDetail.append(section);
+        });
+        if (window.lucide) window.lucide.createIcons({ attrs: { width: 16, height: 16 } });
+      }
 
       function updateState() {
         const active = activeStores().length;
@@ -360,12 +978,14 @@
         managerText.textContent = `管理店家（${active} / ${stores.length} 家入籤）`;
         drawButton.disabled = active < 2;
         if (active < 2) {
+          resultMenuButton.hidden = true;
           drawButton.classList.remove('is-hidden');
           newRoundButton.classList.remove('is-visible');
           resultLabel.textContent = '還不能抽喔';
           resultName.textContent = '請至少選 2 家';
           confirm.classList.remove('is-visible');
         } else if (!chosen) {
+          resultMenuButton.hidden = true;
           drawButton.classList.remove('is-hidden');
           newRoundButton.classList.remove('is-visible');
           resultLabel.textContent = '準備好了嗎？';
@@ -415,6 +1035,7 @@
         const pool = activeStores();
         if (pool.length < 2 || timer) return;
         toast.classList.remove('is-visible');
+        resultMenuButton.hidden = true;
         newRoundButton.classList.remove('is-visible');
         confirm.classList.remove('is-visible');
         drawButton.classList.add('is-hidden');
@@ -429,10 +1050,12 @@
             window.clearInterval(timer);
             timer = null;
             chosen = pool[Math.floor(Math.random() * pool.length)].name;
+            chosenMenuEntry = findMenuEntry(chosen);
             resultLabel.textContent = '今天就喝';
             resultName.textContent = chosen;
             drum.classList.remove('is-drawing');
             confirm.classList.add('is-visible');
+            resultMenuButton.hidden = !chosenMenuEntry;
             drawButton.disabled = false;
           }
         }, 90);
@@ -465,6 +1088,14 @@
         }
       });
       input.addEventListener('input', () => input.setCustomValidity(''));
+      tabs.forEach(tab => tab.addEventListener('click', () => {
+        showView(tab.dataset.view);
+        if (tab.dataset.view === 'menu') {
+          menuSearch.value = '';
+          renderMenuCatalog();
+        }
+      }));
+      menuSearch.addEventListener('input', () => renderMenuCatalog(menuSearch.value));
       drawButton.addEventListener('click', draw);
       redrawButton.addEventListener('click', draw);
       acceptButton.addEventListener('click', () => {
@@ -473,7 +1104,14 @@
         confirm.classList.remove('is-visible');
         newRoundButton.classList.add('is-visible');
       });
+      resultMenuButton.addEventListener('click', () => {
+        if (!chosenMenuEntry) return;
+        menuSearch.value = '';
+        showView('menu');
+        showMenuDetail(chosenMenuEntry);
+      });
       newRoundButton.addEventListener('click', draw);
+      renderMenuCatalog();
       render();
     })();
   </script>
